@@ -87,6 +87,9 @@ add_executable(wxWabbitemu
 	debugger/panes/regpane.cpp #[[ This requires debugger/panes/regpane.h ]]
 	debugger/panes/flagspane.cpp #[[ This requires debugger/panes/flagspane.h ]]
 	debugger/panes/cpupane.cpp #[[ This requires debugger/panes/cpupane.h ]]
+
+	#[[ Resources for Windows ]]
+	${RESOURCES}
 )
 
 target_include_directories(wxWabbitemu PUBLIC
@@ -107,6 +110,14 @@ add_definitions(-DHIGH_SHADE_GIF -DVERBOSE -D_LINUX -DWXVER)
 
 if(MSVC)
     set_target_properties(wxWabbitemu PROPERTIES LINK_FLAGS "/SUBSYSTEM:WINDOWS")
+		set(APP_MANIFEST "${CMAKE_CURRENT_SOURCE_DIR}/app.manifest")
+    target_sources(wxWabbitemu PRIVATE ${APP_MANIFEST})
+endif()
+
+if(WIN32)
+    set(RESOURCES resource.rc)
+else()
+    set(RESOURCES "")
 endif()
 
 # Enable Unicode
