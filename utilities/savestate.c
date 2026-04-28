@@ -1116,7 +1116,7 @@ void WriteSave(const TCHAR *fn, SAVESTATE_t* save, int compress) {
 	fclose(ofile);
 	
 	if (compress) {
-#ifdef WINVER
+#ifdef WIN32
 		_tfopen_s(&cfile, fn, _T("wb"));
 #else
 		cfile = _tfopen_s(fn, "wb");
@@ -1124,7 +1124,7 @@ void WriteSave(const TCHAR *fn, SAVESTATE_t* save, int compress) {
 		if (!cfile) {
 			return;
 		}
-#ifdef WINVER
+#ifdef WIN32
 		_tfopen_s(&ofile, temp_save, _T("rb"));
 #else
 		ofile = fopen(temp_save,"rb");

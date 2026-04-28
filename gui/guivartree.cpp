@@ -1,3 +1,5 @@
+#include <wx/wx.h>
+
 #include "guivartree.h"
 #include "fileutilities.h"
 #include "state.h"
@@ -130,9 +132,11 @@ void VarTree::OnExport(wxCommandEvent &event)
 	if (SetVarName(filePath) == -1) {
 		return;
 	}
-	file = _tfopen_s(export_file_name, wxT("wb"));
-	fwrite(buf, 1, size, file);
-	fclose(file);
+	wxFile file(export_file_name, wxFile::write);
+	if (file.IsOpened()) {
+			file.Write(buf, size);
+			file.Close();
+	}
 	free(buf);
 }
 

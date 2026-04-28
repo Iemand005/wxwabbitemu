@@ -3,9 +3,9 @@
 #include "var.h"
 #include "calc.h"
 #include "fileutilities.h"
-#ifdef _WINDOWS
-#include "miniunz.h"
-#endif
+// #ifdef _WINDOWS
+// #include "miniunz.h"
+// #endif
 
 const char self_test[] = "Self Test?";
 const char catalog[] = "CATALOG";

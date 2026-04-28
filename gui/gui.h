@@ -3,14 +3,16 @@
 #ifndef GUI_WX_H
 #define GUI_WX_H
 
-#include <wx/statusbr.h>
-#include <wx/frame.h>
-#include <wx/numdlg.h>
-#include <wx/dnd.h>
-#include <wx/mstream.h>
-#include <wx/filename.h>
-#include <wx/config.h>
-#include <sys/time.h>
+// #include <wx/statusbr.h>
+// #include <wx/frame.h>
+// #include <wx/numdlg.h>
+// #include <wx/dnd.h>
+// #include <wx/mstream.h>
+// #include <wx/filename.h>
+// #include <wx/config.h>
+#include <wx/wx.h>
+// #include <sys/time.h>
+#include <chrono>
 #if (wxUSE_UNICODE)
 #include <wx/encconv.h> 
 #endif

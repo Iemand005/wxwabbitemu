@@ -173,10 +173,11 @@ void RomWizard::OnFinish(wxWizardEvent &event) {
 					lpCalc->active = TRUE;
 					lpCalc->model = model;
 					lpCalc->cpu.pio.model = model;
-					FILE *file = fopen(hexFile.fn_str(), "rb");
+
+					FILE *file = fopen(hexFile.mb_str(), "rb");
 					writeboot(file, &lpCalc->mem_c, -1);
 					fclose(file);
-					remove(hexFile.fn_str());
+					remove(hexFile.mb_str());
 					
 					calc_erase_certificate(lpCalc->mem_c.flash,lpCalc->mem_c.flash_size);
 					calc_reset(lpCalc);
