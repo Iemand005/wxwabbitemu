@@ -51,6 +51,7 @@
 #include <list>
 #include <vector>
 #include <string>
+#include <algorithm>
 
 namespace std
 {

@@ -1221,13 +1221,13 @@ SAVESTATE_t* ReadSave(FILE *ifile) {
 		}
 		
 		fclose(tmpfile);
-#ifdef WINVER
-		_tfopen_s(&ifile, temp_save, _T("rb"));	//this is not a leak, file gets closed
-											// outside of this routine.
-#else
-		ifile = fopen(temp_save,"rb");	//this is not a leak, file gets closed
-										// outside of this routine.
-#endif
+// #ifdef WINVER TOODO: Replace
+// 		_tfopen_s(&ifile, temp_save, _T("rb"));	//this is not a leak, file gets closed
+// 											// outside of this routine.
+// #else
+// 		ifile = fopen(temp_save,"rb");	//this is not a leak, file gets closed
+// 										// outside of this routine.
+// #endif
 		if (!ifile) {
 			return NULL;
 		}

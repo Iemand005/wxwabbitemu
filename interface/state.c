@@ -186,7 +186,7 @@ TCHAR *Symbol_Name_to_String(int model, symbol83P_t *sym, TCHAR *buffer) {
 			case ProtProgObj:
 			case AppVarObj:
 			case GroupObj: {
-				errno_t error = wxStrcpy(buffer, sym->name);
+				wxStrcpy(buffer, sym->name);
 				return buffer;
 			}
 			case PictObj:
@@ -422,7 +422,7 @@ TCHAR *symbol_to_string(CPU_t *cpu, symbol83P_t *sym, TCHAR *buffer) {
 // #endif
 			p += _tcslen(p);
 		} else {
-			for (i = min(exp, 0); i < sigdigs || i < exp; i++) {
+			for (i = std::min(exp, 0); i < sigdigs || i < exp; i++) {
 				*p++ = (i >= 0 ? FP[i] : 0) + '0';
 				if ((i + 1) < sigdigs && i == exp) *p++ = '.';
 			}
