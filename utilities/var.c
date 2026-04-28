@@ -671,16 +671,16 @@ TIFILE_t* newimportvar(LPCTSTR filePath, BOOL only_check_header) {
 		return tifile;
 	}
 
-#ifdef _WINDOWS
-	if (!_tcsicmp(extension, _T(".tig")) || !_tcsicmp(extension, _T(".zip")) ) {
-		tifile->type = ZIP_TYPE;
-		if (!only_check_header) {
-			ImportZipFile(filePath, tifile);
-		}
-		return tifile;
-	}
-#endif
-#ifdef WINVER
+// #ifdef _WINDOWS
+// 	if (!_tcsicmp(extension, _T(".tig")) || !_tcsicmp(extension, _T(".zip")) ) {
+// 		tifile->type = ZIP_TYPE;
+// 		if (!only_check_header) {
+// 			ImportZipFile(filePath, tifile);
+// 		}
+// 		return tifile;
+// 	}
+// #endif
+#ifdef WIN32
 	_tfopen_s(&infile, filePath, _T("rb"));
 #else
 	infile = fopen(wxFNCONV(filePath), "rb");

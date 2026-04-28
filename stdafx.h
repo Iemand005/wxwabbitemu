@@ -63,9 +63,11 @@ typedef std::string tstring;
 
 #ifdef WXVER
 #include <wx/wx.h>
+#include <wx/mstream.h>
 #endif
 
 #define MAX_PATH 256
+#define PATH_MAX 256 // Why are these both
 
 
 #elif defined(_LINUX)

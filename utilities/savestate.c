@@ -289,10 +289,8 @@ BOOL WriteBlock(CHUNK_t* chunk, unsigned char *pnt, int length) {
 	chunk->size += length;
 	return TRUE;
 }		
-	
 
-	
-unsigned char ReadChar(CHUNK_t* chunk, BOOL *valOK = NULL) {
+unsigned char ReadChar(CHUNK_t* chunk, BOOL *valOK) {
 	unsigned char value;
 	value = chunk->data[chunk->pnt];
 	chunk->pnt += sizeof(unsigned char);
@@ -302,7 +300,11 @@ unsigned char ReadChar(CHUNK_t* chunk, BOOL *valOK = NULL) {
 	return value;
 }
 
-unsigned short ReadShort(CHUNK_t* chunk, BOOL *valOK = NULL) {
+unsigned char ReadChar(CHUNK_t* chunk) {
+	return ReadChar(chunk, NULL);
+}
+
+unsigned short ReadShort(CHUNK_t* chunk, BOOL *valOK) {
 	int i;
 	uint16_t value;
 	unsigned char *pnt = (unsigned char *)(&value);
@@ -320,7 +322,11 @@ unsigned short ReadShort(CHUNK_t* chunk, BOOL *valOK = NULL) {
 	return value;
 }
 
-unsigned int ReadInt(CHUNK_t* chunk, BOOL *valOK = NULL) {
+unsigned short ReadShort(CHUNK_t* chunk) {
+	ReadShort(chunk, NULL)
+}
+
+unsigned int ReadInt(CHUNK_t* chunk, BOOL *valOK) {
 	int i;
 	uint32_t value;
 	unsigned char *pnt = (unsigned char *)(&value);
@@ -336,6 +342,10 @@ unsigned int ReadInt(CHUNK_t* chunk, BOOL *valOK = NULL) {
 		*valOK = CheckPNT(chunk);
 	}
 	return value;
+}
+
+unsigned int ReadInt(CHUNK_t* chunk) {
+	ReadInt(chunk, NULL)
 }
 
 float ReadFloat(CHUNK_t* chunk) {
@@ -1070,13 +1080,13 @@ void WriteSave(const TCHAR *fn, SAVESTATE_t* save, int compress) {
 		return;
 	}
 	if (compress == 0) {
-#ifdef WINVER
+#ifdef WIN32
 		_tfopen_s(&ofile, fn, _T("wb"));
 #else
 		ofile = _tfopen_s(fn, "wb");
 #endif
 	} else {
-#ifdef WINVER
+#ifdef WIN32
 		tmpnam_s(tmpfn, sizeof(tmpfn));
 		GetAppDataString(temp_save, sizeof(temp_save));
 		StringCbCat(temp_save, sizeof(temp_save), tmpfn);
