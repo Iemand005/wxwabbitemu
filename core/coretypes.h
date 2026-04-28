@@ -23,16 +23,6 @@ typedef uint32_t DWORD, *LPDWORD;
 
 typedef unsigned char u_char;
 
-#ifndef WIN32
-#ifdef WINVER
-typedef int bool;
-#else
-#ifndef OBJC_bool_DEFINED
-typedef signed char bool;
-#endif
-#endif
-#endif
-
 #ifndef TRUE
 #define FALSE (0)
 #define TRUE (!FALSE)
