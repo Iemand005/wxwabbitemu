@@ -24,6 +24,8 @@ include_directories(external/wxWidgets/include)
 
 add_subdirectory(external/spasm-ng)
 
+add_subdirectory(external/efsw)
+
 
 # Make MSVC shut up
 if(MSVC)
