@@ -16,7 +16,16 @@ set( wxWidgets_CONFIG_OPTIONS ${wxWidgets_CONFIG_OPTIONS} --static=no )
 # (adv is used for "advanced" widgets, such as the wizard)
 # find_package(wxWidgets REQUIRED adv net core base)
 # include(${wxWidgets_USE_FILE})
+
+# Include wxWidgets from submodule instead
 add_subdirectory(external/wxWidgets)
+include_directories(external/wxWidgets/include)
+
+# Make MSVC shut up
+if(MSVC)
+    add_compile_definitions(_CRT_SECURE_NO_WARNINGS)
+    add_compile_options(/wd4996)
+endif()
 
 # mixing of C and C++ necessitates builds in c++
 file(GLOB_RECURSE CFILES "${CMAKE_SOURCE_DIR}/*.c")
@@ -84,7 +93,8 @@ target_include_directories(wxWabbitemu PUBLIC
                            "${PROJECT_SOURCE_DIR}/utilities"
                            )
 
-target_link_libraries(wxWabbitemu ${wxWidgets_LIBRARIES})
+# target_link_libraries(wxWabbitemu ${wxWidgets_LIBRARIES})
+target_link_libraries(wxWabbitemu PRIVATE wx::base)
 
 add_definitions(-DHIGH_SHADE_GIF -DVERBOSE -D_LINUX -DWXVER)
 
