@@ -157,7 +157,7 @@ void RomWizard::OnFinish(wxWizardEvent &event) {
 			
 			//if you don't want to load an OS, fine...
 			if (osPath.length() > 0) {
-				TIFILE_t *tifile = newimportvar(osPath);
+				TIFILE_t *tifile = newimportvar(osPath.fn_str());
 				if (tifile == NULL || tifile->type != FLASH_TYPE) {
 					wxMessageBox(_T("Error: OS file is corrupt!"), _T("Error"), wxOK | wxICON_ERROR);
 					return;

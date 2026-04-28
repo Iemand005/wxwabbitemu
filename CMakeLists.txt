@@ -27,6 +27,7 @@ if(MSVC)
 	add_compile_options(/wd4996)
 	set(VCPKG_MANIFEST_MODE OFF CACHE BOOL "" FORCE)
 	set(VCPKG_TARGET_TRIPLET "" CACHE STRING "" FORCE)
+	add_compile_options(/showIncludes)
 endif()
 
 # mixing of C and C++ necessitates builds in c++
