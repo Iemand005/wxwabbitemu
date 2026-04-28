@@ -1,16 +1,12 @@
 #ifndef _SENDFILE_H
 #define _SENDFILE_H
 
-#include "link.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
 
-LINK_ERR SendFile(const LPCALC lpCalc, LPCTSTR lpszFileName, SEND_FLAG Destination);
+  #include "link.h"
 
-#ifdef __cplusplus
+  LINK_ERR SendFile(const LPCALC lpCalc, LPCTSTR lpszFileName, SEND_FLAG Destination);
+
 }
-#endif
 
 #endif
