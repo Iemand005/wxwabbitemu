@@ -1,3 +1,6 @@
 [submodule "external/wxWidgets"]
 	path = external/wxWidgets
 	url = https://github.com/Iemand005/wxWidgets.git
+[submodule "external/efsw"]
+	path = external/efsw
+	url = https://github.com/SpartanJ/efsw
