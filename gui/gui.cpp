@@ -2,7 +2,7 @@
 #include "guidebug.h"
 #include "guiapp.h"
 #include "wizard/romwizard.h"
-#include "calc.h"
+// #include "calc.h"
 #include "guiopenfile.h"
 #include "keys.h"
 #include "sendfile.h"
