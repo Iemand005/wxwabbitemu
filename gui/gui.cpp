@@ -116,8 +116,8 @@ BEGIN_EVENT_TABLE(WabbitemuFrame, wxFrame)
 	EVT_LEFT_UP(WabbitemuFrame::OnLeftButtonUp)
 END_EVENT_TABLE()
 
-#pragma comment(linker, "/subsystem:console")
-#pragma comment(linker, "/ENTRY:mainCRTStartup")
+#pragma comment(linker, "/SUBSYSTEM:WINDOWS")
+// #pragma comment(linker, "/ENTRY:mainCRTStartup")
 // IMPLEMENT_APP(WabbitemuApp)
 wxIMPLEMENT_APP(WabbitemuApp);
 
