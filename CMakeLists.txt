@@ -22,13 +22,15 @@ set(wxBUILD_SHARED OFF CACHE BOOL "" FORCE)
 add_subdirectory(external/wxWidgets)
 include_directories(external/wxWidgets/include)
 
+add_subdirectory(external/spasm-ng)
+
+
 # Make MSVC shut up
 if(MSVC)
 	add_compile_definitions(_CRT_SECURE_NO_WARNINGS)
 	add_compile_options(/wd4996)
 	set(VCPKG_MANIFEST_MODE OFF CACHE BOOL "" FORCE)
 	set(VCPKG_TARGET_TRIPLET "" CACHE STRING "" FORCE)
-	# add_compile_options(/showIncludes)
 	add_compile_options(/TP)
 	add_compile_options("$<$<COMPILE_LANGUAGE:C>:/TP>")
 	add_compile_options("$<$<COMPILE_LANGUAGE:CXX>:/TP>")
