@@ -72,8 +72,13 @@ typedef std::string tstring;
 #endif
 #define PATH_MAX 256 // Why are these both
 
-#define TCHAR wchar_t
-typedef const wchar_t *LPCTSTR;
+#ifdef UNICODE
+#define TCHAR char
+// #define TCHAR wchar_t
+#else
+#define TCHAR char
+#endif
+// typedef const wchar_t *LPCTSTR;
 
 #elif defined(_LINUX)
 #include <assert.h>

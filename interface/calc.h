@@ -238,20 +238,6 @@ GLOBAL int calc_waiting_link;
 
 GLOBAL const TCHAR *CalcModelTxt[]
 #ifdef CALC_C
-#ifdef WIN32 // TODO: Change to nly do L where MSVC when it wants
-= {	//"???",
-	_T(L"TI-81"),
-	_T(L"TI-82"),
-	_T(L"TI-83"),
-	_T(L"TI-85"),
-	_T(L"TI-86"),
-	_T(L"TI-73"),
-	_T(L"TI-83+"),
-	_T(L"TI-83+SE"),
-	_T(L"TI-84+"),
-	_T(L"TI-84+SE"),
-	_T(L"???")}
-#else
 = {	//"???",
 	_T("TI-81"),
 	_T("TI-82"),
@@ -264,7 +250,6 @@ GLOBAL const TCHAR *CalcModelTxt[]
 	_T("TI-84+"),
 	_T("TI-84+SE"),
 	_T("???")}
-#endif
 #endif
 ;
 
