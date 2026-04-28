@@ -20,8 +20,8 @@ typedef struct STDINT {
 #endif
 	int mem;
 	int xy;	
-	bool on_backup;
-	bool on_latch;
+	BOOL on_backup;
+	BOOL on_latch;
 } STDINT_t;
 
 

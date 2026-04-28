@@ -15,7 +15,7 @@ int BrowseFile(TCHAR* lpstrFile, const TCHAR *lpstrFilter, const TCHAR *lpstrTit
 // 	ofn.lStructSize			= sizeof(OPENFILENAME);
 // 	ofn.hwndOwner			= GetForegroundWindow();
 // 	ofn.hInstance			= NULL;
-// 	ofn.lpstrFilter			= (LPCTSTR) lpstrFilter;
+// 	ofn.lpstrFilter			= (TCHAR *) lpstrFilter;
 // 	ofn.lpstrCustomFilter	= NULL;
 // 	ofn.nMaxCustFilter		= 0;
 // 	ofn.nFilterIndex		= 0;
@@ -55,7 +55,7 @@ int SaveFile(TCHAR *lpstrFile, const TCHAR *lpstrFilter, const TCHAR *lpstrTitle
 	ofn.lStructSize			= sizeof(OPENFILENAME);
 	ofn.hwndOwner			= GetForegroundWindow();
 	ofn.hInstance			= NULL;
-	ofn.lpstrFilter			= (LPCTSTR) lpstrFilter;
+	ofn.lpstrFilter			= (TCHAR *) lpstrFilter;
 	ofn.lpstrCustomFilter	= NULL;
 	ofn.nMaxCustFilter		= 0;
 	ofn.nFilterIndex		= filterIndex;
@@ -89,7 +89,7 @@ int SaveFile(TCHAR *lpstrFile, const TCHAR *lpstrFilter, const TCHAR *lpstrTitle
 	return 0;
 }
 
-bool ValidPath(TCHAR *lpstrFile) {
+BOOL ValidPath(TCHAR *lpstrFile) {
 	FILE *file;
 #ifdef WINVER
 	errno_t error = _tfopen_s(&file, lpstrFile, _T("r"));
@@ -98,7 +98,7 @@ bool ValidPath(TCHAR *lpstrFile) {
 	return error == 0;
 #else
 	file = _tfopen_s(lpstrFile, "r");
-	bool error = file == NULL;
+	BOOL error = file == NULL;
 	fclose(file);
 	return error;
 #endif

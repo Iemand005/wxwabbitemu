@@ -60,8 +60,8 @@ typedef struct GIF_TREE {
 int gif_write_state = GIF_IDLE;
 
 TCHAR gif_file_name[512] = _T("wabbitemu.gif");
-bool gif_autosave = FALSE;
-bool gif_use_increasing = FALSE;
+BOOL gif_autosave = FALSE;
+BOOL gif_use_increasing = FALSE;
 #ifdef HIGH_SHADE_GIF
 int gif_colors = 8;
 #else
@@ -86,7 +86,7 @@ int gif_time;
 int gif_newframe;
 
 int gif_file_num = 0;
-bool gif_bw = FALSE;
+BOOL gif_bw = FALSE;
 
 
 int chainlen = 0, maxchainlen = 0, nodecount = 0, lookuptypes = 0, nbits;

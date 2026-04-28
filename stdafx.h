@@ -237,9 +237,9 @@ typedef u_int32_t DWORD, *LPDWORD;
 #define FALSE (0)
 #define TRUE (!FALSE)
 #ifdef WINVER
-typedef int bool;
+typedef int BOOL;
 #else
-typedef signed char bool;
+typedef signed char BOOL;
 #endif
 #endif
 */

@@ -4,7 +4,7 @@
 
 typedef struct {
     TCHAR *name;
-    bool IsRAM;
+    BOOL IsRAM;
     uint8_t page;
     uint16_t addr;
 } label_struct;
@@ -24,7 +24,7 @@ void FindFlags(int flag, int bit, TCHAR **flagstring, TCHAR **bitstring);
 
 void VoidLabels(LPCALC lpCalc);
 label_struct *lookup_label(LPCALC lpCalc, TCHAR *label);
-int labels_app_load(LPCALC lpCalc, LPCTSTR lpszFileName);
+int labels_app_load(LPCALC lpCalc, TCHAR * lpszFileName);
 #endif
 
 #endif

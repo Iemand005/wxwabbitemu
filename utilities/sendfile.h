@@ -3,6 +3,6 @@
 
 #include "link.h"
 
-LINK_ERR SendFile(const LPCALC lpCalc, LPCTSTR lpszFileName, SEND_FLAG Destination);
+LINK_ERR SendFile(const LPCALC lpCalc, TCHAR * lpszFileName, SEND_FLAG Destination);
 
 #endif

@@ -20,12 +20,12 @@ public:
 	WizardOSPage( wxWizard* parent );
 	virtual wxWizardPage *GetNext() const;
 	virtual wxWizardPage *GetPrev() const;
-	bool UpdateOSPathState(bool error = false);
+	BOOL UpdateOSPathState(BOOL error = false);
 	//TOOD: make getters and setters
 	wxWizardPage *prev;
 	wxWizardPage *next;
 	int model;
-	bool creatingROM;
+	BOOL creatingROM;
 	wxFilePickerCtrl* m_filePicker2;
 };
 

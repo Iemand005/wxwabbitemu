@@ -4,7 +4,7 @@ extern "C" {
 }
 #include "gui.h"
 
-bool DnDFile::OnDropFiles(wxCoord, wxCoord, const wxArrayString& filenames)
+BOOL DnDFile::OnDropFiles(wxCoord, wxCoord, const wxArrayString& filenames)
 {
     size_t nFiles = filenames.GetCount();
     for (int i = 0; i < nFiles; i++ ) {

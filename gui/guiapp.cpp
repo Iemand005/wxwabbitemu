@@ -5,9 +5,9 @@
 
 WabbitemuFrame *frames[MAX_CALCS];
 
-bool WabbitemuApp::DoRomWizard() {
+BOOL WabbitemuApp::DoRomWizard() {
 	RomWizard wizard;	
-	bool success = wizard.Begin();
+	BOOL success = wizard.Begin();
 	return success;
 }
 
@@ -20,7 +20,7 @@ void WabbitemuApp::LoadSettings(LPCALC lpCalc)
 	settingsConfig->Read(wxT("/SkinEnabled"), &lpCalc->SkinEnabled, FALSE);
 }
 
-bool WabbitemuApp::OnInit()
+BOOL WabbitemuApp::OnInit()
 {
 	wxImage::AddHandler(new wxPNGHandler);
 	//stolen from the windows version
@@ -36,7 +36,7 @@ bool WabbitemuApp::OnInit()
 		frame = gui_frame(lpCalc);
 	} else {
 		calc_slot_free(lpCalc);
-		bool loadedRom = FALSE;
+		BOOL loadedRom = FALSE;
 		if (parsedArgs.num_rom_files > 0) {
 			for (int i = 0; i < parsedArgs.num_rom_files; i++) {
 				if (rom_load(lpCalc, parsedArgs.rom_files[i])) {
@@ -47,7 +47,7 @@ bool WabbitemuApp::OnInit()
 			}
 		}
 		if (!loadedRom) {
-			bool success = DoRomWizard();
+			BOOL success = DoRomWizard();
 			if (!success) {
 				return FALSE;
 			}

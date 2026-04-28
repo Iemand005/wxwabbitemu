@@ -5,7 +5,7 @@
 extern Z80_com_t da_opcode[256];
 
 int DisassemblyView::FindLastItem() {
-	bool doneBank0 = false;
+	BOOL doneBank0 = false;
 	int i;
 	for (i = 0; i < 0xFFFF; i++) {
 		if (!doneBank0 && (zinf[i].waddr.addr >> 14) == 1) {

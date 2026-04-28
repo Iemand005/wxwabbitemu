@@ -68,7 +68,7 @@ int WizardCalcTypePage::GetModel() const {
 	return -1;
 }
 
-void WizardCalcTypePage::EnableRadios(bool enableRadios) const {
+void WizardCalcTypePage::EnableRadios(BOOL enableRadios) const {
 	m_calc82->Enable(enableRadios);
 	m_calc83->Enable(enableRadios);
 	m_calc85->Enable(enableRadios);

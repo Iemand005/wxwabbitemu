@@ -29,7 +29,7 @@ typedef enum {
 
 typedef struct {
 	int total;
-	bool state[32];
+	BOOL state[32];
 } ep_state;
 
 #endif /* DBCOMMON_H */

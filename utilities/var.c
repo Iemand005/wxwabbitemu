@@ -207,7 +207,7 @@ int ReadIntelHex(FILE *ifile, INTELHEX_t *ihex) {
 }
 
 // #ifdef _WINDOWS
-// TIFILE_t* ImportZipFile(LPCTSTR filePath, TIFILE_t *tifile) {
+// TIFILE_t* ImportZipFile(TCHAR * filePath, TIFILE_t *tifile) {
 // 	unzFile uf;
 // 	TCHAR path[MAX_PATH];
 // 	uf = unzOpen(filePath);
@@ -313,7 +313,7 @@ TIFILE_t* ImportFlashFile(FILE *infile, TIFILE_t *tifile) {
 }
 
 TIFILE_t* ImportROMFile(FILE *infile, TIFILE_t *tifile) {
-	size_t size;
+	unsigned long long size;
 	int calc, i, tmp;
 
 	fseek(infile, 0, SEEK_END);
@@ -642,7 +642,7 @@ TIFILE_t* ImportVarData(FILE *infile, TIFILE_t *tifile, int varNumber) {
 	return tifile;
 }
 
-TIFILE_t* newimportvar(LPCTSTR filePath, bool only_check_header) {
+TIFILE_t* newimportvar(TCHAR * filePath, BOOL only_check_header) {
 	FILE *infile = NULL;
 	TIFILE_t *tifile;
 	

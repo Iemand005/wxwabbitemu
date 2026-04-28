@@ -38,7 +38,7 @@ static TCHAR gif_fn_backup[MAX_PATH];
  * Gets where the next screenshot should be saved to.
  * Returns true if ready, false if user cancels
  */
-bool get_gif_filename() {
+BOOL get_gif_filename() {
 	int i;
 #ifdef _WINDOWS
 	StringCbCopy(gif_fn_backup, sizeof(gif_fn_backup), gif_file_name);
@@ -49,7 +49,7 @@ bool get_gif_filename() {
 		/* do file save */
 		if (gif_use_increasing) {
 			FILE *test = NULL;
-			bool fileExists = FALSE;
+			BOOL fileExists = FALSE;
 			i = 0;
 					
 			 do {
@@ -158,7 +158,7 @@ unsigned char* GIFGREYLCD(LCD_t *lpLCD) {
 void handle_screenshot() {
 	LCD_t* lcd;
 	int i, j, shades = 0;
-	bool running_backup[MAX_CALCS];
+	BOOL running_backup[MAX_CALCS];
 	for (i = 0; i < MAX_CALCS; i++) {
 		running_backup[i] = calcs[i].running;
 		calcs[i].running = FALSE;

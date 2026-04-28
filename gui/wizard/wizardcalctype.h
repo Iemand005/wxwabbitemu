@@ -25,7 +25,7 @@ public:
 	virtual wxWizardPage *GetNext() const;
 	virtual wxWizardPage *GetPrev() const;
 	int GetModel() const;
-	void EnableRadios(bool enableRadios) const;
+	void EnableRadios(BOOL enableRadios) const;
 	wxWizardPage *prev;
 	wxWizardPage *next;
 };

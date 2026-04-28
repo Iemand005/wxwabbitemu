@@ -33,7 +33,7 @@ RomWizard::RomWizard() : wxWizard (NULL, wxID_ANY, _T("ROM Wizard")) {
 	win->Enable(false);
 }
 
-bool RomWizard::Begin() {
+BOOL RomWizard::Begin() {
 	return this->RunWizard(startPage);
 }
 
@@ -97,7 +97,7 @@ void RomWizard::ModelInit(LPCALC lpCalc, int model)
 	}
 }
 
-bool RomWizard::ExtractBootFree(wxString &bootfreePath, int model) {
+BOOL RomWizard::ExtractBootFree(wxString &bootfreePath, int model) {
 	wxString tempFile = wxFileName::GetTempDir();
 	tempFile.Append(_T("/bootfree.hex"));
 	bootfreePath = tempFile;
@@ -137,7 +137,7 @@ void RomWizard::OnFinish(wxWizardEvent &event) {
 	if (startPage->m_browseRadio->GetValue()) {
 		wxString path = startPage->m_filePicker1->GetPath();
 		LPCALC lpCalc = calc_slot_new();
-		bool success = rom_load(lpCalc, path.c_str());
+		BOOL success = rom_load(lpCalc, path.c_str());
 		if (!success) {
 			//should never get here
 			return;

@@ -8,7 +8,7 @@
 #ifndef _WINDOWS
 #ifndef _LINUX
 typedef char TCHAR;
-typedef const char *LPCTSTR;
+typedef const char *TCHAR *;
 #endif
 typedef void *LPVOID;
 typedef intptr_t INT_PTR;

@@ -115,7 +115,7 @@ typedef struct TIFILE {
 
 int FindRomVersion(int, char*, unsigned char*, int);
 int ReadIntelHex(FILE *ifile, INTELHEX_t *ihex);
-TIFILE_t* newimportvar(wchar_t const * FilePath, bool only_check_header = FALSE);
+TIFILE_t* newimportvar(wchar_t const * FilePath, BOOL only_check_header = FALSE);
 TIFILE_t* FreeTiFile(TIFILE_t *);
 
 #endif

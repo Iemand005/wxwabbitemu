@@ -45,7 +45,7 @@ protected:
 	DECLARE_EVENT_TABLE()
 private:
 	wxWindow *skinWindow;
-	bool is_resizing;
+	BOOL is_resizing;
 	VarTree *varTree;
 	//menu items
 	void OnFileQuit(wxCommandEvent& event);

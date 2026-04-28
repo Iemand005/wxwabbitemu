@@ -11,7 +11,7 @@
 extern int def(FILE *, FILE *, int);
 extern int inf(FILE *, FILE *);
 
-bool cmpTags(const char *str1, const char *str2) {
+BOOL cmpTags(const char *str1, const char *str2) {
 	int i;
 	for(i = 0; i < 4; i++) {
 		if (str1[i] != str2[i]) return FALSE;
@@ -139,7 +139,7 @@ CHUNK_t* NewChunk(SAVESTATE_t* save, const char *tag) {
 	return save->chunks[chunk];
 }
 
-bool DelChunk(SAVESTATE_t *save, const char *tag) {
+BOOL DelChunk(SAVESTATE_t *save, const char *tag) {
 	int i;
 	for(i = 0; i < save->chunk_count; i++) {
 		if (cmpTags(save->chunks[i]->tag, tag) == TRUE) {
@@ -157,14 +157,14 @@ bool DelChunk(SAVESTATE_t *save, const char *tag) {
 }
 
 
-bool CheckPNT(CHUNK_t* chunk) {
+BOOL CheckPNT(CHUNK_t* chunk) {
 	if (chunk->size < chunk->pnt) {
 		return FALSE;
 	}
 	return TRUE;
 }
 
-bool WriteChar(CHUNK_t* chunk, char value) {
+BOOL WriteChar(CHUNK_t* chunk, char value) {
 	unsigned char * tmppnt;
 	tmppnt = (unsigned char *) realloc(chunk->data, chunk->size + sizeof(char));
 	if (tmppnt == NULL) {
@@ -177,7 +177,7 @@ bool WriteChar(CHUNK_t* chunk, char value) {
 }
 
 
-bool WriteShort(CHUNK_t* chunk, uint16_t value) {
+BOOL WriteShort(CHUNK_t* chunk, uint16_t value) {
 	int i;
 	unsigned char  *tmppnt;
 	unsigned char  *pnt = (unsigned char *)(&value);
@@ -196,7 +196,7 @@ bool WriteShort(CHUNK_t* chunk, uint16_t value) {
 	chunk->size += sizeof(value);
 	return TRUE;
 }
-bool WriteInt(CHUNK_t* chunk, uint32_t value) {
+BOOL WriteInt(CHUNK_t* chunk, uint32_t value) {
 	int i;
 	unsigned char *tmppnt;
 	unsigned char *pnt = (unsigned char *)(&value);
@@ -216,7 +216,7 @@ bool WriteInt(CHUNK_t* chunk, uint32_t value) {
 	return TRUE;
 }
 
-bool WriteLong(CHUNK_t* chunk, uint64_t value) {
+BOOL WriteLong(CHUNK_t* chunk, uint64_t value) {
 	int i;
 	unsigned char *tmppnt;
 	unsigned char *pnt = (unsigned char *)(&value);
@@ -236,7 +236,7 @@ bool WriteLong(CHUNK_t* chunk, uint64_t value) {
 	return TRUE;
 }
 
-bool WriteFloat(CHUNK_t* chunk, float value) {
+BOOL WriteFloat(CHUNK_t* chunk, float value) {
 	int i;
 	unsigned char *tmppnt;
 	unsigned char *pnt = (unsigned char *)(&value);
@@ -255,7 +255,7 @@ bool WriteFloat(CHUNK_t* chunk, float value) {
 	chunk->size += sizeof(value);
 	return TRUE;
 }	
-bool WriteDouble(CHUNK_t* chunk, double value) {
+BOOL WriteDouble(CHUNK_t* chunk, double value) {
 	int i;
 	unsigned char *tmppnt;
 	unsigned char *pnt = (unsigned char *)(&value);
@@ -275,7 +275,7 @@ bool WriteDouble(CHUNK_t* chunk, double value) {
 	return TRUE;
 }
 
-bool WriteBlock(CHUNK_t* chunk, unsigned char *pnt, int length) {
+BOOL WriteBlock(CHUNK_t* chunk, unsigned char *pnt, int length) {
 	int i;
 	unsigned char *tmppnt;
 	tmppnt = (unsigned char *) realloc(chunk->data,chunk->size+length);
@@ -290,7 +290,7 @@ bool WriteBlock(CHUNK_t* chunk, unsigned char *pnt, int length) {
 	return TRUE;
 }		
 
-unsigned char ReadCharOk(CHUNK_t* chunk, bool *valOK) {
+unsigned char ReadCharOk(CHUNK_t* chunk, BOOL *valOK) {
 	unsigned char value;
 	value = chunk->data[chunk->pnt];
 	chunk->pnt += sizeof(unsigned char);
@@ -304,7 +304,7 @@ unsigned char ReadChar(CHUNK_t* chunk) {
 	return ReadCharOk(chunk, NULL);
 }
 
-unsigned short ReadShortOk(CHUNK_t* chunk, bool *valOK) {
+unsigned short ReadShortOk(CHUNK_t* chunk, BOOL *valOK) {
 	int i;
 	uint16_t value;
 	unsigned char *pnt = (unsigned char *)(&value);
@@ -326,7 +326,7 @@ unsigned short ReadShort(CHUNK_t* chunk) {
 	return ReadShortOk(chunk, NULL);
 }
 
-unsigned int ReadIntOk(CHUNK_t* chunk, bool *valOK) {
+unsigned int ReadIntOk(CHUNK_t* chunk, BOOL *valOK) {
 	int i;
 	uint32_t value;
 	unsigned char *pnt = (unsigned char *)(&value);
@@ -671,7 +671,7 @@ void SaveLCD(SAVESTATE_t* save, LCD_t* lcd) {
 SAVESTATE_t* SaveSlot(void *lpInput) {
 	LPCALC lpCalc = (LPCALC) lpInput;
 	SAVESTATE_t* save;
-	bool runsave;
+	BOOL runsave;
 	if (lpCalc->active == FALSE) return NULL;
 
 	runsave = lpCalc->running;
@@ -850,7 +850,7 @@ void LoadMEM(SAVESTATE_t* save, memc* mem) {
 		if (chunk) {
 			for (int i = 0; i < num_ram_breaks; i++)
 			{
-				bool valOk;
+				BOOL valOk;
 				int addr = ReadIntOk(chunk, &valOk);
 				if (valOk) {
 					waddr_t waddr;
@@ -947,7 +947,7 @@ void LoadSE_AUX(SAVESTATE_t* save, SE_AUX_t *se_aux) {
 		return;
 	}
 	
-	bool is_83p = save->model < TI_83PSE && save->version_minor == 1;
+	BOOL is_83p = save->model < TI_83PSE && save->version_minor == 1;
 	if (is_83p) {
 		LINKASSIST_t *linka = (LINKASSIST_t *) se_aux;
 		linka->link_enable	= ReadChar(chunk);
@@ -1030,7 +1030,7 @@ void LoadSE_AUX(SAVESTATE_t* save, SE_AUX_t *se_aux) {
 
 
 void LoadSlot(SAVESTATE_t *save, void *lpInput) {
-	bool runsave;
+	BOOL runsave;
 	LPCALC lpCalc = (LPCALC) lpInput;
 	
 	if (lpCalc->active == FALSE){

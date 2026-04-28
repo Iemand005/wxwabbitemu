@@ -759,7 +759,7 @@ int disassemble(LPCALC lpCalc, ViewType type, waddr_t waddr, int count, Z80_info
 					}
 				case _T('a'):
 					{
-						LPCTSTR sz = _T("$%04X");
+						TCHAR * sz = _T("$%04X");
 						_tcscat(out, sz);
 						outOffset += _tcslen(sz);
 						inOffset += 2;
@@ -767,7 +767,7 @@ int disassemble(LPCALC lpCalc, ViewType type, waddr_t waddr, int count, Z80_info
 					}
 				case _T('h'):
 					{
-						LPCTSTR sz = _T("%+d");
+						TCHAR * sz = _T("%+d");
 						_tcscat(out, sz);
 						outOffset += _tcslen(sz);
 						inOffset += 2;
@@ -789,7 +789,7 @@ int disassemble(LPCALC lpCalc, ViewType type, waddr_t waddr, int count, Z80_info
 					}
 				case _T('x'):
 					{
-						LPCTSTR sz = _T("$%02X");
+						TCHAR * sz = _T("$%02X");
 						_tcscat(out, sz);
 						outOffset += _tcslen(sz) ;
 						inOffset += 2;
