@@ -67,7 +67,9 @@ typedef std::string tstring;
 #include <wx/numdlg.h>
 #endif
 
+#ifndef MAX_PATH
 #define MAX_PATH 256
+#endif
 #define PATH_MAX 256 // Why are these both
 
 
