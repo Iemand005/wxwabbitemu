@@ -1,10 +1,12 @@
 #include <wx/file.h>
 
 #include "guivartree.h"
-#include "fileutilities.h"
-#include "state.h"
-#include "tiicons.h"
-#include "exportvar.h"
+extern "C" {
+	#include "fileutilities.h"
+	#include "state.h"
+	#include "tiicons.h"
+	#include "exportvar.h"
+}
 
 enum
 {
