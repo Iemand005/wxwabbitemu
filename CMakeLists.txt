@@ -23,9 +23,10 @@ include_directories(external/wxWidgets/include)
 
 # Make MSVC shut up
 if(MSVC)
-    add_compile_definitions(_CRT_SECURE_NO_WARNINGS)
-    add_compile_options(/wd4996)
-		set(VCPKG_MANIFEST_MODE OFF CACHE BOOL "Disable vcpkg manifest warning" FORCE)
+	add_compile_definitions(_CRT_SECURE_NO_WARNINGS)
+	add_compile_options(/wd4996)
+	set(VCPKG_MANIFEST_MODE OFF CACHE BOOL "" FORCE)
+	set(VCPKG_TARGET_TRIPLET "" CACHE STRING "" FORCE)
 endif()
 
 # mixing of C and C++ necessitates builds in c++

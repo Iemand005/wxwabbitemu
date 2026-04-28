@@ -851,7 +851,7 @@ void LoadMEM(SAVESTATE_t* save, memc* mem) {
 			for (int i = 0; i < num_ram_breaks; i++)
 			{
 				BOOL valOk;
-				int addr = ReadInt(chunk, &valOk);
+				int addr = ReadIntOk(chunk, &valOk);
 				if (valOk) {
 					waddr_t waddr;
 					waddr.addr = addr % PAGE_SIZE;
