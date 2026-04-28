@@ -38,6 +38,12 @@ endif()
 file(GLOB_RECURSE CFILES "${CMAKE_SOURCE_DIR}/*.c")
 set_source_files_properties(${CFILES} PROPERTIES LANGUAGE CXX )
 
+if(WIN32)
+    set(RESOURCES resource.rc)
+else()
+    set(RESOURCES "")
+endif()
+
 # add the executable
 add_executable(wxWabbitemu
 	#[[ Core ]]
@@ -110,14 +116,9 @@ add_definitions(-DHIGH_SHADE_GIF -DVERBOSE -D_LINUX -DWXVER)
 
 if(MSVC)
     set_target_properties(wxWabbitemu PROPERTIES LINK_FLAGS "/SUBSYSTEM:WINDOWS")
-		set(APP_MANIFEST "${CMAKE_CURRENT_SOURCE_DIR}/app.manifest")
-    target_sources(wxWabbitemu PRIVATE ${APP_MANIFEST})
-endif()
-
-if(WIN32)
-    set(RESOURCES resource.rc)
-else()
-    set(RESOURCES "")
+		
+		set(wxUSE_RC_MANIFEST ON CACHE BOOL "" FORCE)
+		set(wxUSE_DPI_AWARE_MANIFEST 2 CACHE STRING "" FORCE)
 endif()
 
 # Enable Unicode
