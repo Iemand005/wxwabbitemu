@@ -100,7 +100,7 @@ int calc_init_81(LPCALC lpCalc, char *version) {
 }
 
 /*  82 83 */
-static BOOL calc_init_83(LPCALC lpCalc, char *os) {
+static bool calc_init_83(LPCALC lpCalc, char *os) {
 	/* INTIALIZE 83 */
 	memory_init_83(&lpCalc->mem_c);
 	tc_init(&lpCalc->timer_c, MHZ_6);
@@ -257,7 +257,7 @@ void check_bootfree_and_update(LPCALC lpCalc) {
 #endif
 }
 
-BOOL rom_load(LPCALC lpCalc, TCHAR * FileName) {
+bool rom_load(LPCALC lpCalc, TCHAR * FileName) {
 	if (lpCalc == NULL) {
 		return FALSE;
 	}
@@ -457,7 +457,7 @@ void calc_slot_free(LPCALC lpCalc) {
 
 void calc_turn_on(LPCALC lpCalc)
 {
-	BOOL running = lpCalc->running;
+	bool running = lpCalc->running;
 	lpCalc->running = TRUE;
 	calc_run_seconds(lpCalc, 2.0);
 	keypad_press(&lpCalc->cpu, KEYGROUP_ON, KEYBIT_ON);
@@ -680,7 +680,7 @@ int calc_run_tstates(LPCALC lpCalc, time_t tstates) {
 	return 0;
 }
 
-BOOL calc_start_screenshot(calc_t *calc, const TCHAR *filename)
+bool calc_start_screenshot(calc_t *calc, const TCHAR *filename)
 {
 	if (gif_write_state == GIF_IDLE)
 	{
@@ -722,7 +722,7 @@ void calc_unpause_linked() {
 #define FRAME_SUBDIVISIONS	(1024)
 int calc_run_all(void) {
 	int i, j, active_calc = -1;
-	BOOL calc_waiting = FALSE;
+	bool calc_waiting = FALSE;
 
 	for (i = 0; i < FRAME_SUBDIVISIONS; i++) {
 		link_hub[MAX_CALCS]->host = 0;

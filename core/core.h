@@ -106,9 +106,9 @@ typedef struct timer_context {
 typedef struct bank_state {
 	unsigned char *addr;		//Pointer to offset of memory.(already paged)
 	int page;					//Current 16kb page
-	BOOL read_only;				//You can not write to this page(not even if the flash is unlocked)
-	BOOL ram;					//This is on the ram chip(also effect write method for flash)
-	BOOL no_exec;				//You can not execute on this page
+	bool read_only;				//You can not write to this page(not even if the flash is unlocked)
+	bool ram;					//This is on the ram chip(also effect write method for flash)
+	bool no_exec;				//You can not execute on this page
 } bank_state_t, bank_t;
 
 /* Memory address translation */
@@ -120,7 +120,7 @@ typedef struct bank_state {
 
 // all the information required to address a byte of memory
 typedef struct waddr {
-	BOOL is_ram;
+	bool is_ram;
 	uint8_t page;
 	uint16_t addr;
 } waddr_t;
@@ -156,7 +156,7 @@ typedef struct memory_context {
 	};
 
 #ifdef WINVER
-	BOOL (*breakpoint_manager_callback)(memory_context *, BREAK_TYPE, waddr_t);
+	bool (*breakpoint_manager_callback)(memory_context *, BREAK_TYPE, waddr_t);
 #endif
 
 	int flash_size;
@@ -165,15 +165,15 @@ typedef struct memory_context {
 	int ram_pages;
 	int step;					// These 3 are for flash programming
 	unsigned char cmd;			// step tells what cycle of the command you are on,
-	BOOL flash_sector_erase;	// whether flash is in the middle of erasing
+	bool flash_sector_erase;	// whether flash is in the middle of erasing
 
 	bank_state_t *banks;		//pointer to the correct bank state currently
 	bank_state_t normal_banks[5];		//Current state of each bank
 								// structure 5 is used to preserve the 4th in boot map
 	bank_state_t bootmap_banks[5];			//used to hold a backup of the banks when this is boot mapped
-	BOOL boot_mapped;			//Special mapping used in boot that changes how paging works
-	BOOL hasChangedPage0;		//Check if bootcode is still mapped to page 0 or not
-	BOOL flash_locked;			//Whether flash is writeable or not.
+	bool boot_mapped;			//Special mapping used in boot that changes how paging works
+	bool hasChangedPage0;		//Check if bootcode is still mapped to page 0 or not
+	bool flash_locked;			//Whether flash is writeable or not.
 	int protected_page_set;		//Special for the 83p, used to determine which group of pages you are referring to
 	int protected_page[4];		//Special for the 83p, used to determine which page of a set to protect
 	RAM_PROT_MODE prot_mode;
@@ -198,8 +198,8 @@ typedef struct memory_context {
 	int port0F;
 	union {
 		struct {
-			BOOL flash_enabled : 1;
-			BOOL flash_disabled : 1;
+			bool flash_enabled : 1;
+			bool flash_disabled : 1;
 		};
 		uint16_t port24;
 	};
@@ -214,12 +214,12 @@ typedef struct memory_context {
 /* Input/Output device mapping */
 typedef void (*devp)(void *, void *);
 typedef struct device {
-	BOOL active;
+	bool active;
 	memory_context_t *mem_c;
 	void *aux;
 	devp code;
-	BOOL breakpoint;
-	BOOL protected_port;
+	bool breakpoint;
+	bool protected_port;
 } device_t;
 
 typedef struct interrupt {
@@ -268,11 +268,11 @@ typedef struct CPU {
 	unsigned short pc, sp;
 	unsigned char i, r, bus;
 	int imode;
-	BOOL interrupt;
-	BOOL ei_block;
-	BOOL iff1, iff2;
-	BOOL halt;
-	BOOL read, write, output, input;
+	bool interrupt;
+	bool ei_block;
+	bool iff1, iff2;
+	bool halt;
+	bool read, write, output, input;
 	int prefix;
 	pioc pio;
 	memc *mem_c;
@@ -282,9 +282,9 @@ typedef struct CPU {
 	reverse_time_t prev_instruction_list[512];
 	reverse_time_t *prev_instruction;
 	int reverse_instr;
-	BOOL reverse_wrap;
-	BOOL do_opcode_callback;
-	BOOL is_link_instruction;
+	bool reverse_wrap;
+	bool do_opcode_callback;
+	bool is_link_instruction;
 	unsigned long long linking_time;
 	unsigned long long hasHitEnter;
 } CPU_t;
@@ -311,12 +311,12 @@ void disable_break(memc *mem, waddr_t waddr);
 void disable_mem_write_break(memc *, waddr_t waddr);
 void disable_mem_read_break(memc *, waddr_t waddr);
 
-BOOL check_break(memc *, waddr_t);
-BOOL check_mem_read_break(memc *mem, waddr_t waddr);
-BOOL check_mem_write_break(memc *mem, waddr_t waddr);
+bool check_break(memc *, waddr_t);
+bool check_mem_read_break(memc *mem, waddr_t waddr);
+bool check_mem_write_break(memc *mem, waddr_t waddr);
 
-BOOL is_priveleged_page(CPU_t *cpu);
-void change_page(CPU_t *cpu, int bank, char page, BOOL ram);
+bool is_priveleged_page(CPU_t *cpu);
+void change_page(CPU_t *cpu, int bank, char page, bool ram);
 void update_bootmap_pages(memc *mem_c);
 
 int tc_init(timerc*, int);

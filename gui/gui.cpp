@@ -31,8 +31,8 @@
 #define min(a, b)  (((a) < (b)) ? (a) : (b))
 #endif
 
-BOOL gif_anim_advance;
-BOOL silent_mode = false;
+bool gif_anim_advance;
+bool silent_mode = false;
 int prevCalcScale;
 enum
 {
@@ -228,7 +228,7 @@ void WabbitemuFrame::gui_frame_update() {
 		keymapHeight = 725;//lpCalc->keymap.GetHeight();
 	}
 	int foundX = 0, foundY = 0;
-	BOOL foundScreen = false;
+	bool foundScreen = false;
 	if (((skinWidth != keymapWidth) || (skinHeight != keymapHeight)) && skinHeight > 0 && skinWidth > 0) {
 		lpCalc->SkinEnabled = false;
 		wxMessageBox(wxT("Skin and Keymap are not the same size"), wxT("Error"),  wxOK, NULL);
@@ -840,7 +840,7 @@ void WabbitemuFrame::OnLeftButtonUp(wxMouseEvent& event)
 	int group, bit;
 	event.Skip(true);
 	static wxPoint pt;
-	BOOL repostMessage = FALSE;
+	bool repostMessage = FALSE;
 	keypad_t *kp = lpCalc->cpu.pio.keypad;
 
 #define KEY_TIMER 1
@@ -931,7 +931,7 @@ void WabbitemuFrame::OnDebugOn(wxCommandEvent& WXUNUSED(event))
 void WabbitemuFrame::OnHelpSetup(wxCommandEvent& WXUNUSED(event))
 {
 	int count = calc_count();
-	BOOL success = WabbitemuApp::DoRomWizard();
+	bool success = WabbitemuApp::DoRomWizard();
 	if (!success) {
 		return;
 	}

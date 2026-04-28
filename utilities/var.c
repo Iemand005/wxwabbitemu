@@ -646,7 +646,7 @@ TIFILE_t* newimportvar(TCHAR * filePath) {
 	return newimportvarCheck(filePath, TRUE);
 }
 
-TIFILE_t* newimportvarCheck(TCHAR * filePath, BOOL only_check_header) {
+TIFILE_t* newimportvarCheck(TCHAR * filePath, bool only_check_header) {
 	FILE *infile = NULL;
 	TIFILE_t *tifile;
 	

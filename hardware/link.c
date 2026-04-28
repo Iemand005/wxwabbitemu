@@ -54,7 +54,7 @@ int link_connect_hub(int slot, CPU_t *cpu) {
 	return 0;
 }
 
-BOOL link_connected_hub(int slot) {
+bool link_connected_hub(int slot) {
 	return link_hub[slot] != NULL;
 }
 
@@ -693,7 +693,7 @@ LINK_ERR link_send_app(CPU_t *cpu, TIFILE_t *tifile) {
 	}
 }
 
-BOOL check_flashpage_empty(u_char (*dest)[PAGE_SIZE], u_int page, u_int num_pages) {
+bool check_flashpage_empty(u_char (*dest)[PAGE_SIZE], u_int page, u_int num_pages) {
 	u_char *space = &dest[page][PAGE_SIZE - 1];
 	u_int i;
 	// Make sure the subsequent pages are empty

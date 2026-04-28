@@ -40,7 +40,7 @@ TCHAR* FindAddressLabel(LPCALC lpCalc, waddr_t waddr) {
 //-------------------------------------------
 // True means label is found and is the same
 //
-BOOL label_search_tios(TCHAR *label, int equate) {
+bool label_search_tios(TCHAR *label, int equate) {
 	if (!label) {
 		return FALSE;
 	}

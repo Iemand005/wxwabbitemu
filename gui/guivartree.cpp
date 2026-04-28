@@ -317,7 +317,7 @@ Pictures  (*.8xi)|*.8xi|GDBs  (*.8xd)|*.8xd|Matrices  (*.8xm)|*.8xm|Strings  (*.
 	return 0;
 }
 
-void VarTree::UpdateVarTree(BOOL New)
+void VarTree::UpdateVarTree(bool New)
 {
 	unsigned int i;
 	int slot;

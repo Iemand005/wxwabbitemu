@@ -73,7 +73,7 @@ waddr_t addr_to_waddr(memc *mem_c, uint16_t addr) {
 	return waddr;
 }
 
-BOOL check_break(memc *mem, waddr_t waddr) {
+bool check_break(memc *mem, waddr_t waddr) {
 	if (!(mem->breaks[waddr.is_ram][PAGE_SIZE * waddr.page + mc_base(waddr.addr)] & NORMAL_BREAK))
 		return FALSE;
 #ifdef WINVER
@@ -82,7 +82,7 @@ BOOL check_break(memc *mem, waddr_t waddr) {
 #endif
 	return TRUE;
 }
-BOOL check_mem_write_break(memc *mem, waddr_t waddr) {
+bool check_mem_write_break(memc *mem, waddr_t waddr) {
 	if (!(mem->breaks[waddr.is_ram][PAGE_SIZE * waddr.page + mc_base(waddr.addr)] & MEM_WRITE_BREAK))
 		return FALSE;
 #ifdef WINVER
@@ -91,7 +91,7 @@ BOOL check_mem_write_break(memc *mem, waddr_t waddr) {
 #endif
 	return TRUE;
 }
-BOOL check_mem_read_break(memc *mem, waddr_t waddr) {
+bool check_mem_read_break(memc *mem, waddr_t waddr) {
 	if (!(mem->breaks[waddr.is_ram][PAGE_SIZE * waddr.page + mc_base(waddr.addr)] & MEM_READ_BREAK))
 		return FALSE;
 #ifdef WINVER
@@ -204,7 +204,7 @@ static void handle_pio(CPU_t *cpu) {
 	}
 }
 
-BOOL is_priveleged_page(CPU_t *cpu) {
+bool is_priveleged_page(CPU_t *cpu) {
 	//privileged pages are as follows
 	// TI 83+		= 1C, 1D, 1F
 	// TI 83+SE		= 7C, 7D, 7F
@@ -220,7 +220,7 @@ BOOL is_priveleged_page(CPU_t *cpu) {
 	return ((page >= maxPages - 4 && page != maxPages - 2) || (((cpu->pio.model >= TI_84P) && page == maxPages - 0x11)));
 }
 
-static BOOL is_allowed_exec(CPU_t *cpu) {
+static bool is_allowed_exec(CPU_t *cpu) {
 	bank_state_t  *bank = &cpu->mem_c->banks[mc_bank(cpu->pc)];
 	if (cpu->pio.model <= TI_83P) {
 		int protected_val;
@@ -262,7 +262,7 @@ static BOOL is_allowed_exec(CPU_t *cpu) {
 	}
 }
 
-void change_page(CPU_t *cpu, int bank, char page, BOOL ram) {
+void change_page(CPU_t *cpu, int bank, char page, bool ram) {
 	cpu->mem_c->normal_banks[bank].ram			= ram;
 	if (ram) {
 		cpu->mem_c->normal_banks[bank].page		= page;
@@ -732,7 +732,7 @@ static void handle_interrupt(CPU_t *cpu) {
 	}
 }
 
-BOOL is_link_instruction(CPU_t *cpu) {
+bool is_link_instruction(CPU_t *cpu) {
 	BYTE b1 = mem_read(cpu->mem_c, cpu->pc);
 	BYTE b2 = mem_read(cpu->mem_c, cpu->pc + 1);
 	return

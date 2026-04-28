@@ -37,9 +37,9 @@ WizardStartPage::WizardStartPage( wxWizard* parent) : wxWizardPage( parent )
 	m_copyRadio->Enable(false);
 }
 
-BOOL WizardStartPage::UpdateROMPathState(BOOL error) {
+bool WizardStartPage::UpdateROMPathState(bool error) {
 	TIFILE_t *tifile;
-	BOOL ready = false;
+	bool ready = false;
 	wxWindow *win = FindWindowById(wxID_FORWARD, GetParent());
 	wxMessageDialog *dial;
 	wxString path = m_filePicker1->GetPath();

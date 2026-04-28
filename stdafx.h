@@ -4,14 +4,14 @@
 #if defined(_WINDOWS)
 #pragma once
 
-#define _WIN32_LEAN_AND_MEAN
+// #define _WIN32_LEAN_AND_MEAN
 
-#ifndef STRICT
-#define STRICT
-#endif
+// #ifndef STRICT
+// #define STRICT
+// #endif
 
-#define _ATL_NO_AUTOMATIC_NAMESPACE
-#define _ATL_CSTRING_EXPLICIT_CONSTRUCTORS	// some CString constructors will be explicit
+// #define _ATL_NO_AUTOMATIC_NAMESPACE
+// #define _ATL_CSTRING_EXPLICIT_CONSTRUCTORS	// some CString constructors will be explicit
 
 // #include <winsock2.h>
 // #include <Windows.h>
@@ -237,9 +237,9 @@ typedef u_int32_t DWORD, *LPDWORD;
 #define FALSE (0)
 #define TRUE (!FALSE)
 #ifdef WINVER
-typedef int BOOL;
+typedef int bool;
 #else
-typedef signed char BOOL;
+typedef signed char bool;
 #endif
 #endif
 */

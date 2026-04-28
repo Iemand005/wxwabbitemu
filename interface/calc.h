@@ -34,7 +34,7 @@ typedef enum {
 #define MAX_FLASH_PAGE_SIZE 0x80
 #define MAX_RAM_PAGE_SIZE 0x08
 typedef struct profiler {
-	BOOL running;
+	bool running;
 	int blockSize;
 	long long totalTime;
 	long flash_data[MAX_FLASH_PAGE_SIZE][PAGE_SIZE / MIN_BLOCK_SIZE];
@@ -66,7 +66,7 @@ typedef struct tagCALC {
 
 	time_t time_error;
 
-	BOOL active;
+	bool active;
 	CPU_t cpu;
 	memory_context_t mem_c;
 	timer_context_t timer_c;
@@ -88,9 +88,9 @@ typedef struct tagCALC {
 	HWND hwndTeacherView;
 	HWND hwndTeacherViewScreen[3];
 
-	BOOL SkinEnabled;
+	bool SkinEnabled;
 	DWORD scale;
-	BOOL bCutout;
+	bool bCutout;
 	HANDLE hdlThread;
 	
 	clock_t sb_refresh;
@@ -98,7 +98,7 @@ typedef struct tagCALC {
 	key_string *last_keypress_head;
 	int num_keypresses;
 
-	BOOL do_drag;
+	bool do_drag;
 	HDC hdcSkin;
 	HDC hdcButtons;
 	HDC hdcKeymap;
@@ -106,19 +106,19 @@ typedef struct tagCALC {
 	wxImage calcSkin;
 	wxImage keymap;
 	int scale;
-	BOOL SkinEnabled;
-	BOOL bCutout;
+	bool SkinEnabled;
+	bool bCutout;
 	wxSize SkinSize;
 	wxRect LCDRect;
 	clock_t sb_refresh;
-	BOOL bCustomSkin;
+	bool bCustomSkin;
 	char skin_path[256];
 	char keymap_path[256];
-	BOOL bTIOSDebug;
+	bool bTIOSDebug;
 #endif
 
-	BOOL running;
-	BOOL auto_turn_on;
+	bool running;
+	bool auto_turn_on;
 	int speed;
 	BYTE breakpoints[0x10000];
 	label_struct labels[6000];
@@ -134,10 +134,10 @@ typedef struct tagCALC {
 	RECT rectSkin;
 	RECT rectLCD;
 	COLORREF FaceplateColor;
-	BOOL bCustomSkin;
-	BOOL bAlwaysOnTop;
-	BOOL bAlphaBlendLCD;
-	BOOL bTIOSDebug;
+	bool bCustomSkin;
+	bool bAlwaysOnTop;
+	bool bAlphaBlendLCD;
+	bool bTIOSDebug;
 	TCHAR skin_path[256];
 	TCHAR keymap_path[256];
 	IWabbitemu *pWabbitemu;
@@ -171,7 +171,7 @@ int calc_run_frame(LPCALC);
 int calc_run_seconds(LPCALC, double);
 int calc_run_timed(LPCALC, time_t);
 int calc_run_all(void);
-BOOL calc_start_screenshot(calc_t *calc, const char *filename);
+bool calc_start_screenshot(calc_t *calc, const char *filename);
 void calc_stop_screenshot(calc_t *calc);
 
 #ifdef WITH_BACKUPS
@@ -182,7 +182,7 @@ void free_backups(LPCALC);
 void free_backup(debugger_backup *);
 #endif
 
-BOOL rom_load(LPCALC lpCalc, TCHAR * FileName);
+bool rom_load(LPCALC lpCalc, TCHAR * FileName);
 void calc_slot_free(LPCALC);
 
 void calc_unpause_linked();
@@ -219,19 +219,19 @@ GLOBAL int num_backup_per_sec;
 #include "avifile.h"
 GLOBAL CAviFile *currentAvi;
 GLOBAL HAVI recording_avi;
-GLOBAL BOOL is_recording;
+GLOBAL bool is_recording;
 #endif
 
 GLOBAL u_int frame_counter;
 GLOBAL int startX;
 GLOBAL int startY;
-GLOBAL BOOL exit_save_state;
-GLOBAL BOOL check_updates;
-GLOBAL BOOL new_calc_on_load_files;
-GLOBAL BOOL do_backups;
-GLOBAL BOOL break_on_exe_violation;
-GLOBAL BOOL break_on_invalid_flash;
-GLOBAL BOOL sync_cores;
+GLOBAL bool exit_save_state;
+GLOBAL bool check_updates;
+GLOBAL bool new_calc_on_load_files;
+GLOBAL bool do_backups;
+GLOBAL bool break_on_exe_violation;
+GLOBAL bool break_on_invalid_flash;
+GLOBAL bool sync_cores;
 GLOBAL link_t *link_hub[MAX_CALCS + 1];
 GLOBAL int link_hub_count;
 GLOBAL int calc_waiting_link;

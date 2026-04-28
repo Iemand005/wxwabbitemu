@@ -81,13 +81,13 @@ private:
 	
 	VARTREEVIEW_t Tree[MAX_CALCS];
 	TCHAR export_file_name[512];
-	BOOL Tree_init;
+	bool Tree_init;
 protected:
 	DECLARE_EVENT_TABLE()
 public:
 	VarTree(wxWindow *window);
 	~VarTree();
-	void UpdateVarTree(BOOL New);
+	void UpdateVarTree(bool New);
 };
 
 #endif

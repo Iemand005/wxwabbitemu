@@ -29,7 +29,7 @@ private:
 	void OnLeftButtonUp(wxMouseEvent& event);
 	void FinalizeButtons();
 
-	BOOL hasDrawnLCD;
+	bool hasDrawnLCD;
 	LPCALC lpCalc;
 	wxFrame *mainFrame;
 };

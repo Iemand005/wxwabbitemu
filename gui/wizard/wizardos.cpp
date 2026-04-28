@@ -34,9 +34,9 @@ WizardOSPage::WizardOSPage( wxWizard *parent ) : wxWizardPage(parent)
 	this->Layout();
 }
 
-BOOL WizardOSPage::UpdateOSPathState(BOOL error) {
+bool WizardOSPage::UpdateOSPathState(bool error) {
 	TIFILE_t *tifile;
-	BOOL ready = false;
+	bool ready = false;
 	wxWindow *win = FindWindowById(wxID_FORWARD, GetParent());
 	wxMessageDialog *dial;
 	wxString path = m_filePicker2->GetPath();
