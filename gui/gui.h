@@ -31,7 +31,7 @@ class WabbitemuFrame: public wxFrame
 {
 public:
     WabbitemuFrame(LPCALC);
-   	wxWindow *wxLCD;
+   	wxWindow *wxLCD = nullptr;
     
 	void OnKeyDown(wxKeyEvent& event);
 	void OnKeyUp(wxKeyEvent& event);
