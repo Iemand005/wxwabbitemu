@@ -8,7 +8,7 @@
 //from the given filename
 LINK_ERR SendFile(const LPCALC lpCalc, const TCHAR * lpszFileName, SEND_FLAG Destination)
 {
-	TIFILE_t *var = newimportvar(lpszFileName, FALSE);
+	TIFILE_t *var = newimportvar(lpszFileName);
 
 	LINK_ERR result;
 	if (var != NULL)

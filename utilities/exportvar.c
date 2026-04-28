@@ -139,11 +139,11 @@ int mprintf(MFILE* mf, const TCHAR *format, ...) {
 		TCHAR buffer[1024];
 		int i;
 #ifdef WIN32
-		vsprintf_s(buffer, format, list, NULL);
+		vsprintf_s(buffer, 1024, format, list);
 #else
 		_vstprintf(buffer, format, list);
 #endif
-		size_t sz_length = _tcslen(buffer);
+		unsigned long long sz_length = _tcslen(buffer);
 		if (mf->pnt >= mf->size) {
 			temp = (unsigned char *) realloc(mf->data, mf->size+sz_length);
 			if (!temp) return EOF;

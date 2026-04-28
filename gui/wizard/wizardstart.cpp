@@ -47,7 +47,7 @@ BOOL WizardStartPage::UpdateROMPathState(BOOL error) {
 	wxString path = m_filePicker1->GetPath();
 	
 	if (!path.IsEmpty()) {
-		tifile = newimportvar(path.c_str(), TRUE);
+		tifile = newimportvarCheck(path.c_str(), TRUE);
 		if (tifile == NULL || !((tifile->type == ROM_TYPE) || (tifile->type == SAV_TYPE))) {
 			if (error) {
 				dial = new wxMessageDialog(NULL, wxT("Invalid ROM image specified! Please select a valid ROM image, and try again."),
