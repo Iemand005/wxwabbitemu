@@ -514,6 +514,10 @@ WabbitemuFrame::WabbitemuFrame(LPCALC lpCalc) : wxFrame(NULL, wxID_ANY, wxT("Wab
 	this->SetSize(windowSize);
 
 	this->Bind(wxEVT_SIZE, &WabbitemuFrame::OnSize, this);
+
+	this->SetBackgroundStyle(wxBG_STYLE_PAINT);
+	this->Bind(wxEVT_PAINT, &WabbitemuFrame::OnPaint, this);
+	this->Bind(wxEVT_ERASE_BACKGROUND, [](wxEraseEvent&){});
 }
 
 void WabbitemuFrame::OnShow(wxShowEvent& event) {
