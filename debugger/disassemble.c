@@ -1,4 +1,3 @@
-#include "stdafx.h"
 
 #include "disassemble.h"
 #include "label.h"
