@@ -214,7 +214,7 @@ void WabbitemuApp::ParseCommandLineArgs()
 void LoadToLPCALC(INT_PTR lParam, LPTSTR filePath, SEND_FLAG sendLoc)
 {
 	LPCALC lpCalc = (LPCALC) lParam;
-	SendFile(lpCalc, filePath, sendLoc);
+	// SendFile(lpCalc, filePath, sendLoc); TODO: Fix
 }
 
 void WabbitemuApp::LoadCommandlineFiles(INT_PTR lParam,  void (*load_callback)(INT_PTR, LPTSTR, SEND_FLAG))

@@ -1221,7 +1221,7 @@ SAVESTATE_t* ReadSave(FILE *ifile) {
 		}
 		
 		fclose(tmpfile);
-// #ifdef WINVER TOODO: Replace
+// #ifdef WINVER TODO: Replace
 // 		_tfopen_s(&ifile, temp_save, _T("rb"));	//this is not a leak, file gets closed
 // 											// outside of this routine.
 // #else
