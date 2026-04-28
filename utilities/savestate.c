@@ -290,7 +290,7 @@ BOOL WriteBlock(CHUNK_t* chunk, unsigned char *pnt, int length) {
 	return TRUE;
 }		
 
-unsigned char ReadChar(CHUNK_t* chunk, BOOL *valOK) {
+unsigned char ReadCharOk(CHUNK_t* chunk, BOOL *valOK) {
 	unsigned char value;
 	value = chunk->data[chunk->pnt];
 	chunk->pnt += sizeof(unsigned char);
@@ -301,10 +301,10 @@ unsigned char ReadChar(CHUNK_t* chunk, BOOL *valOK) {
 }
 
 unsigned char ReadChar(CHUNK_t* chunk) {
-	return ReadChar(chunk, NULL);
+	return ReadCharOk(chunk, NULL);
 }
 
-unsigned short ReadShort(CHUNK_t* chunk, BOOL *valOK) {
+unsigned short ReadShortOk(CHUNK_t* chunk, BOOL *valOK) {
 	int i;
 	uint16_t value;
 	unsigned char *pnt = (unsigned char *)(&value);
@@ -323,10 +323,10 @@ unsigned short ReadShort(CHUNK_t* chunk, BOOL *valOK) {
 }
 
 unsigned short ReadShort(CHUNK_t* chunk) {
-	return ReadShort(chunk, NULL);
+	return ReadShortOk(chunk, NULL);
 }
 
-unsigned int ReadInt(CHUNK_t* chunk, BOOL *valOK) {
+unsigned int ReadIntOk(CHUNK_t* chunk, BOOL *valOK) {
 	int i;
 	uint32_t value;
 	unsigned char *pnt = (unsigned char *)(&value);
@@ -345,7 +345,7 @@ unsigned int ReadInt(CHUNK_t* chunk, BOOL *valOK) {
 }
 
 unsigned int ReadInt(CHUNK_t* chunk) {
-	return ReadInt(chunk, NULL);
+	return ReadIntOk(chunk, NULL);
 }
 
 float ReadFloat(CHUNK_t* chunk) {
