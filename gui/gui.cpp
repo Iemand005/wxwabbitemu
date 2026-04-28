@@ -522,13 +522,13 @@ void WabbitemuFrame::OnShow(wxShowEvent& event) {
 
 void WabbitemuFrame::OnSize(wxSizeEvent& event) {
 	if (IsIconized()) {
-			event.Skip();
-			return;
+		event.Skip();
+		return;
 	}
 
 	wxSize currentClientSize = GetClientSize();
 
-	int lcdWidth = 96; // Of haal dit dynamisch op
+	int lcdWidth = 96;
 	int lcdHeight = 64; 
 	double ratio = (double)lcdWidth / (double)lcdHeight;
 
