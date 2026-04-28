@@ -13,24 +13,24 @@
 #define _ATL_NO_AUTOMATIC_NAMESPACE
 #define _ATL_CSTRING_EXPLICIT_CONSTRUCTORS	// some CString constructors will be explicit
 
-#include <winsock2.h>
-#include <Windows.h>
-#include <WindowsX.h>
-#include <tchar.h>
-#include <strsafe.h>
-#include <CommCtrl.h>
-#include <shlobj.h>
-#include <math.h>
-#include <Uxtheme.h>
-#include <dwmapi.h>
-#include <Ole2.h>
-#include <OleIdl.h>
-#include <ShObjIdl.h>
-#include <assert.h>
-#include <setjmp.h>
-#define _CRTDBG_MAP_ALLOC
-#include <stdlib.h>
-#include <crtdbg.h>
+// #include <winsock2.h>
+// #include <Windows.h>
+// #include <WindowsX.h>
+// #include <tchar.h>
+// #include <strsafe.h>
+// #include <CommCtrl.h>
+// #include <shlobj.h>
+// #include <math.h>
+// #include <Uxtheme.h>
+// #include <dwmapi.h>
+// #include <Ole2.h>
+// #include <OleIdl.h>
+// #include <ShObjIdl.h>
+// #include <assert.h>
+// #include <setjmp.h>
+// #define _CRTDBG_MAP_ALLOC
+// #include <stdlib.h>
+// #include <crtdbg.h>
 
 #include <stdio.h>
 #include <sys/types.h>
