@@ -22,6 +22,7 @@ typedef uint32_t DWORD, *LPDWORD;
 #endif
 
 typedef unsigned char u_char;
+typedef unsigned int u_int;
 
 #ifndef TRUE
 #define FALSE (0)
