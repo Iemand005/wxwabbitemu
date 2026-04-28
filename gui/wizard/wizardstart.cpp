@@ -1,6 +1,8 @@
 #include "wizardstart.h"
 #include "gui.h"
+extern "C" {
 #include "var.h"
+}
 
 BEGIN_EVENT_TABLE(WizardStartPage, wxWizardPage)
 	EVT_RADIOBUTTON(wxID_ANY, WizardStartPage::OnRadioSelected)

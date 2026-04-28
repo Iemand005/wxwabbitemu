@@ -1,7 +1,9 @@
 #include "romwizard.h"
 #include "gui.h"
 #include "fileutilities.h"
+extern "C" {
 #include "exportvar.h"
+}
 
 #include "rom/bf73.h"
 #include "rom/bf83p.h"
