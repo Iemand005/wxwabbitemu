@@ -1,7 +1,7 @@
 #ifndef VAR_H
 #define VAR_H
 
-#include "stdafx.h"
+// #include "stdafx.h"
 #include "savestate.h"
 
 typedef struct INTELHEX {
