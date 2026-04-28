@@ -72,13 +72,68 @@ typedef std::string tstring;
 #endif
 #define PATH_MAX 256 // Why are these both
 
-#ifdef UNICODE
-#define TCHAR char
-// #define TCHAR wchar_t
-#else
-#define TCHAR char
-#endif
+// #ifdef UNICODE
+// #define TCHAR char
+// // #define TCHAR wchar_t
+// #else
+// #define TCHAR char
+// #endif
 // typedef const wchar_t *LPCTSTR;
+
+#ifdef _UNICODE
+#include <wchar.h>
+#endif
+
+#ifndef _T
+#ifdef _UNICODE
+#define _T(z) L ## z
+#define TCHAR wchar_t
+typedef const wchar_t *LPCTSTR;
+typedef wchar_t *LPTSTR;
+
+#define _tcscpy _tcscpy_s
+#define _tcscpy_s std::wcscpy
+#define _tcsncpy std::wcsncpy
+//TODO: fix this to actually properly pass the size
+#define _tprintf_s(buffer, format, ...) swprintf(buffer, MAX_PATH, format,  __VA_ARGS__)
+#define _tprintf _tprintf_s
+#define _tcsicmp wcscasecmp
+#define _tcscmp wcscmp
+#define _tcsncmp wcsncmp
+#define _putts puts
+#define _tcsrchr wcsrchr
+#define _tcslen wcslen
+#define _tfopen_s(file, mode) fopen(wxFNCONV(file), (char *)mode)
+#define _stscanf swscanf
+#define _tcscat wcscat
+#define _vstprintf(buffer, format, ...) vswprintf(buffer, wcslen(buffer), format, __VA_ARGS__)
+#define _vftprintf vfwprintf
+#define _tcsnicmp wcsncasecmp
+#else
+#define _T(z) z
+#define TCHAR char
+typedef const char *LPCTSTR;
+typedef char *LPCTSTR;
+
+#define _tprintf_s _tprintf
+#define _tprintf sprintf
+#define _tcsicmp strcasecmp
+#define _putts puts
+#define _tcsrchr strrchr
+#define _tcsncpy strncpy
+#define _tcscpy_s strcpy
+#define _tcscpy strcpy
+#define _tcslen strlen
+#define _tcsncmp strncmp
+#define _tcscmp strcmp
+#define _tfopen_s fopen
+#define _stscanf sscanf
+#define _tcscat strcat
+#define _vftprintf vfprintf
+#define _vstprintf vsprintf
+#define _tcsnicmp strncasecmp
+#endif
+#endif
 
 #elif defined(_LINUX)
 #include <assert.h>

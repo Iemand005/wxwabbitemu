@@ -257,7 +257,7 @@ void check_bootfree_and_update(LPCALC lpCalc) {
 #endif
 }
 
-bool rom_load(LPCALC lpCalc, LPCTSTR FileName) {
+bool rom_load(LPCALC lpCalc, TCHAR * FileName) {
 	if (lpCalc == NULL) {
 		return FALSE;
 	}

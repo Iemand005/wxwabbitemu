@@ -64,7 +64,7 @@ LINK_ERR SendFile(const LPCALC lpCalc, const wchar_t * lpszFileName, SEND_FLAG D
 			}
 		case LABEL_TYPE:
 			{
-				_tcscpy_s(lpCalc->labelfn, lpszFileName);
+				// _tcscpy_s(lpCalc->labelfn, lpszFileName);
 				VoidLabels(lpCalc);
 				labels_app_load(lpCalc, lpCalc->labelfn);
 				result = LERR_SUCCESS;
