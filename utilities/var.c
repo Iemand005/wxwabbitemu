@@ -206,18 +206,18 @@ int ReadIntelHex(FILE *ifile, INTELHEX_t *ihex) {
 	return 1;
 }
 
-#ifdef _WINDOWS
-TIFILE_t* ImportZipFile(LPCTSTR filePath, TIFILE_t *tifile) {
-	unzFile uf;
-	TCHAR path[MAX_PATH];
-	uf = unzOpen(filePath);
-	GetAppDataString(path, sizeof(path));
-	StringCbCat(path, sizeof(path), _T("\\Zip"));
-	int err = extract_zip(uf, path);
-	unzClose(uf);
-	return err ? NULL: tifile;
-}
-#endif
+// #ifdef _WINDOWS
+// TIFILE_t* ImportZipFile(LPCTSTR filePath, TIFILE_t *tifile) {
+// 	unzFile uf;
+// 	TCHAR path[MAX_PATH];
+// 	uf = unzOpen(filePath);
+// 	GetAppDataString(path, sizeof(path));
+// 	StringCbCat(path, sizeof(path), _T("\\Zip"));
+// 	int err = extract_zip(uf, path);
+// 	unzClose(uf);
+// 	return err ? NULL: tifile;
+// }
+// #endif
 
 TIFILE_t* ImportFlashFile(FILE *infile, TIFILE_t *tifile) {
 	int i;
