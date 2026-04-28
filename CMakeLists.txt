@@ -18,6 +18,7 @@ set( wxWidgets_CONFIG_OPTIONS ${wxWidgets_CONFIG_OPTIONS} --static=no )
 # include(${wxWidgets_USE_FILE})
 
 # Include wxWidgets from submodule instead
+set(wxBUILD_SHARED OFF CACHE BOOL "" FORCE)
 add_subdirectory(external/wxWidgets)
 include_directories(external/wxWidgets/include)
 
