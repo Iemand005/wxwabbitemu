@@ -1,5 +1,7 @@
 #include "droptarget.h"
+extern "C" {
 #include "sendfile.h"
+}
 #include "gui.h"
 
 bool DnDFile::OnDropFiles(wxCoord, wxCoord, const wxArrayString& filenames)
