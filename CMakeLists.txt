@@ -1,6 +1,6 @@
 # Portions of this come from KiCad's CMakeLists.txt
 
-cmake_minimum_required(VERSION 3.0.2)
+cmake_minimum_required(VERSION 3.10.0)
 
 # set the project name
 project(wxWabbitemu VERSION 0.1.0)
@@ -14,8 +14,9 @@ set( wxWidgets_CONFIG_OPTIONS ${wxWidgets_CONFIG_OPTIONS} --static=no )
 
 # now hunt for wxWidgets
 # (adv is used for "advanced" widgets, such as the wizard)
-find_package(wxWidgets REQUIRED adv net core base)
-include(${wxWidgets_USE_FILE})
+# find_package(wxWidgets REQUIRED adv net core base)
+# include(${wxWidgets_USE_FILE})
+add_subdirectory(external/wxWidgets)
 
 # mixing of C and C++ necessitates builds in c++
 file(GLOB_RECURSE CFILES "${CMAKE_SOURCE_DIR}/*.c")
