@@ -100,8 +100,12 @@ int WabbitemuApp::OnExit() {
 unsigned WabbitemuApp::GetTickCount()
 {
 		struct timeval tv;
-		if(gettimeofday(&tv, NULL) != 0)
-			return 0;
+
+		auto nu = std::chrono::system_clock::now();
+		auto duration = nu.time_since_epoch();
+
+		tv.tv_sec = std::chrono::duration_cast<std::chrono::seconds>(duration).count();
+		tv.tv_usec = std::chrono::duration_cast<std::chrono::microseconds>(duration).count() % 1000000;
 
 		return (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
 }

@@ -305,7 +305,7 @@ BOOL rom_load(LPCALC lpCalc, LPCTSTR FileName) {
 		}
 
 		LoadSlot(tifile->save, lpCalc);
-#ifdef WINVER
+#ifdef WIN32
 		StringCbCopy(lpCalc->rom_path, sizeof(lpCalc->rom_path), FileName);
 #else
 		_tcscpy_s(lpCalc->rom_path, FileName);

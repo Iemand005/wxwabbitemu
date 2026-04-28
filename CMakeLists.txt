@@ -25,6 +25,7 @@ include_directories(external/wxWidgets/include)
 if(MSVC)
     add_compile_definitions(_CRT_SECURE_NO_WARNINGS)
     add_compile_options(/wd4996)
+		set(VCPKG_MANIFEST_MODE OFF CACHE BOOL "Disable vcpkg manifest warning" FORCE)
 endif()
 
 # mixing of C and C++ necessitates builds in c++

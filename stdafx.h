@@ -61,6 +61,13 @@ typedef std::string tstring;
 }
 #endif
 
+#ifdef WXVER
+#include <wx/wx.h>
+#endif
+
+#define MAX_PATH 256
+
+
 #elif defined(_LINUX)
 #include <assert.h>
 #include <setjmp.h>
@@ -75,7 +82,7 @@ typedef std::string tstring;
 #include <wchar.h>
 #endif
 #ifdef WXVER
-#include <wx/wx.h>
+// #include <wx/wx.h>
 #undef _T
 #endif
 
