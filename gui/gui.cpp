@@ -301,12 +301,12 @@ void WabbitemuFrame::gui_frame_update() {
 	this->SendSizeEvent();
 }
 
-WabbitemuFrame::WabbitemuFrame(LPCALC lpCalc) : wxFrame(NULL, wxID_ANY, wxT("Wabbitemu"), wxDefaultPosition, wxSize(800, 600), wxDEFAULT_FRAME_STYLE)
+WabbitemuFrame::WabbitemuFrame(LPCALC lpCalc) : wxFrame(NULL, wxID_ANY, wxT("Wabbitemu"))
 {
 	this->lpCalc = lpCalc;
 	this->skinWindow = new SkinWindow(this, lpCalc);
 	
-	this->SetWindowStyleFlag(wxBORDER_RAISED);
+	// this->SetWindowStyleFlag(wxDEFAULT_FRAME_STYLE);
 	wxSize skinSize(350, 725);
 	lpCalc->SkinSize = skinSize;
 	LCD_t *lcd = lpCalc->cpu.pio.lcd;
@@ -512,10 +512,27 @@ WabbitemuFrame::WabbitemuFrame(LPCALC lpCalc) : wxFrame(NULL, wxID_ANY, wxT("Wab
 	this->Connect(wxEVT_SHOW, (wxObjectEventFunction) &WabbitemuFrame::OnShow);
 	
 	this->SetSize(windowSize);
+
+	this->Bind(wxEVT_SIZE, &WabbitemuFrame::OnSize, this);
 }
 
 void WabbitemuFrame::OnShow(wxShowEvent& event) {
 	this->isShownVar = 1;
+}
+
+void WabbitemuFrame::OnSize(wxSizeEvent& event) {
+	wxSize s = event.GetSize();
+    
+	double aspectRatio = 96.0 / 64.0;
+
+	wxSize clientSize = GetClientSize();
+	int idealHeight = (int)((double)clientSize.x / aspectRatio);
+
+	if (std::abs(clientSize.y - idealHeight) > 2) {
+        this->SetClientSize(clientSize.x, idealHeight);
+    }
+
+	event.Skip();
 }
 
 void WabbitemuFrame::OnResize(wxSizeEvent& event) {
