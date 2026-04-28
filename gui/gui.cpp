@@ -116,7 +116,8 @@ BEGIN_EVENT_TABLE(WabbitemuFrame, wxFrame)
 	EVT_LEFT_UP(WabbitemuFrame::OnLeftButtonUp)
 END_EVENT_TABLE()
 
-IMPLEMENT_APP(WabbitemuApp)
+// IMPLEMENT_APP(WabbitemuApp)
+wxIMPLEMENT_APP(WabbitemuApp);
 
 inline wxBitmap wxGetBitmapFromMemory(const unsigned char *data, int length) {
    wxMemoryInputStream is(data, length);

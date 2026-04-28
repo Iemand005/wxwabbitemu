@@ -64,6 +64,7 @@ typedef std::string tstring;
 #ifdef WXVER
 #include <wx/wx.h>
 #include <wx/mstream.h>
+#include <wx/numdlg.h>
 #endif
 
 #define MAX_PATH 256

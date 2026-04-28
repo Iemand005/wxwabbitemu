@@ -31,7 +31,7 @@ endif()
 
 # mixing of C and C++ necessitates builds in c++
 file(GLOB_RECURSE CFILES "${CMAKE_SOURCE_DIR}/*.c")
-SET_SOURCE_FILES_PROPERTIES(${CFILES} PROPERTIES LANGUAGE CXX )
+set_source_files_properties(${CFILES} PROPERTIES LANGUAGE CXX )
 
 # add the executable
 add_executable(wxWabbitemu
