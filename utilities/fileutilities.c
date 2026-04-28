@@ -2,6 +2,7 @@
 #include "coretypes.h"
 #ifdef WXVER
 #include <wx/wx.h>
+#include <wx/filedlg.h>
 extern char* wxStringToChar(wxString);
 #endif
 
@@ -9,33 +10,33 @@ extern char* wxStringToChar(wxString);
 
 int BrowseFile(TCHAR* lpstrFile, const TCHAR *lpstrFilter, const TCHAR *lpstrTitle, const TCHAR *lpstrDefExt, unsigned int flags) {
 	lpstrFile[0] = '\0';
-#ifdef _WINDOWS
-	OPENFILENAME ofn;
-	ofn.lStructSize			= sizeof(OPENFILENAME);
-	ofn.hwndOwner			= GetForegroundWindow();
-	ofn.hInstance			= NULL;
-	ofn.lpstrFilter			= (LPCTSTR) lpstrFilter;
-	ofn.lpstrCustomFilter	= NULL;
-	ofn.nMaxCustFilter		= 0;
-	ofn.nFilterIndex		= 0;
-	ofn.lpstrFile			= (LPTSTR) lpstrFile;
-	ofn.nMaxFile			= MAX_PATH;
-	ofn.lpstrFileTitle		= NULL;
-	ofn.nMaxFileTitle		= 0;
-	ofn.lpstrInitialDir		= NULL;
-	ofn.lpstrTitle			= lpstrTitle;
-	ofn.Flags				= flags | OFN_HIDEREADONLY | OFN_EXPLORER | OFN_LONGNAMES;
-	ofn.lpstrDefExt			= lpstrDefExt;
-	ofn.lCustData			= 0;
-	ofn.lpfnHook			= NULL;
-	ofn.lpTemplateName		= NULL;
-	ofn.pvReserved			= NULL;
-	ofn.dwReserved			= 0;
-	ofn.FlagsEx				= 0;
-	if (!GetOpenFileName(&ofn)) {
-		return 1;
-	}
-#elif WXVER
+// #ifdef _WINDOWS
+// 	OPENFILENAME ofn;
+// 	ofn.lStructSize			= sizeof(OPENFILENAME);
+// 	ofn.hwndOwner			= GetForegroundWindow();
+// 	ofn.hInstance			= NULL;
+// 	ofn.lpstrFilter			= (LPCTSTR) lpstrFilter;
+// 	ofn.lpstrCustomFilter	= NULL;
+// 	ofn.nMaxCustFilter		= 0;
+// 	ofn.nFilterIndex		= 0;
+// 	ofn.lpstrFile			= (LPTSTR) lpstrFile;
+// 	ofn.nMaxFile			= MAX_PATH;
+// 	ofn.lpstrFileTitle		= NULL;
+// 	ofn.nMaxFileTitle		= 0;
+// 	ofn.lpstrInitialDir		= NULL;
+// 	ofn.lpstrTitle			= lpstrTitle;
+// 	ofn.Flags				= flags | OFN_HIDEREADONLY | OFN_EXPLORER | OFN_LONGNAMES;
+// 	ofn.lpstrDefExt			= lpstrDefExt;
+// 	ofn.lCustData			= 0;
+// 	ofn.lpfnHook			= NULL;
+// 	ofn.lpTemplateName		= NULL;
+// 	ofn.pvReserved			= NULL;
+// 	ofn.dwReserved			= 0;
+// 	ofn.FlagsEx				= 0;
+// 	if (!GetOpenFileName(&ofn)) {
+// 		return 1;
+// 	}
+// #elif WXVER
 	flags |= wxFD_OPEN | wxFD_FILE_MUST_EXIST;
 	wxFileDialog dialog(NULL, lpstrFile, wxEmptyString, lpstrFile, lpstrFilter, flags, wxDefaultPosition, wxDefaultSize, lpstrTitle);
 	if (dialog.ShowModal() == wxID_OK) {
@@ -43,7 +44,7 @@ int BrowseFile(TCHAR* lpstrFile, const TCHAR *lpstrFilter, const TCHAR *lpstrTit
 	} else {
 		return 1;
 	}
-#endif
+// #endif
 	return 0;
 }
 

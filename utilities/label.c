@@ -100,13 +100,18 @@ int labels_app_load(LPCALC lpCalc, LPCTSTR lpszFileName) {
 
 	while (!feof(labelFile)) {
 #ifdef _UNICODE
-#ifdef _WINDOWS
-		fgets(readBuf, 256, labelFile);
-		MultiByteToWideChar(CP_ACP, 0, readBuf, -1, buffer, ARRAYSIZE(buffer));
-#else
-		fgets(readBuf, 256, labelFile);
+// #ifdef _WINDOWS
+// 		fgets(readBuf, 256, labelFile);
+// 		MultiByteToWideChar(CP_ACP, 0, readBuf, -1, buffer, ARRAYSIZE(buffer));
+// #else
+// 		fgets(readBuf, 256, labelFile);
 		
-#endif
+// #endif
+	if (fgets(readBuf, 256, labelFile)) {
+			wxString strBuf = wxString::FromUTF8(readBuf);
+			// buffer = strBuf.
+			// TODO: use wxString.
+	}
 #else
 		fgets(buffer, 256, labelFile);
 #endif

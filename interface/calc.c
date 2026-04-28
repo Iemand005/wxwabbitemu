@@ -15,14 +15,14 @@
 #include "link.h"
 #include "keys.h"
 
-#ifdef _WINDOWS
-#include "disassemble.h"
-#include "CCalcAddress.h"
-#include "CPage.h"
-#include "exportvar.h"
-#include "guiwizard.h"
-#include "guibuttons.h"
-#endif
+// #ifdef _WINDOWS
+// #include "disassemble.h"
+// #include "CCalcAddress.h"
+// #include "CPage.h"
+// #include "exportvar.h"
+// #include "guiwizard.h"
+// #include "guibuttons.h"
+// #endif
 
 /*
  * Determine the slot for a new calculator.  Return a pointer to the calc
