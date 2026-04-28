@@ -19,7 +19,7 @@ BEGIN_EVENT_TABLE(VarTree, wxFrame)
 	EVT_BUTTON(ID_Var_Export, VarTree::OnExport)
 END_EVENT_TABLE()
 
-extern char type_ext[32][4]; ;
+extern "C" char type_ext[32][4]; ;
 VarTree::VarTree( wxWindow* parent) : wxFrame(parent, wxID_ANY, _T("Calculator Variables"),
 	wxDefaultPosition, wxSize(350, 400), wxRESIZE_BORDER | wxSYSTEM_MENU | wxCAPTION | wxCLOSE_BOX | wxCLIP_CHILDREN )
 {

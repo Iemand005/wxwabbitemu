@@ -104,6 +104,10 @@ target_link_libraries(wxWabbitemu PRIVATE wx::core wx::base)
 
 add_definitions(-DHIGH_SHADE_GIF -DVERBOSE -D_LINUX -DWXVER)
 
+if(MSVC)
+    set_target_properties(wxWabbitemu PROPERTIES LINK_FLAGS "/SUBSYSTEM:CONSOLE")
+endif()
+
 # Enable Unicode
 if( CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang" )
 	if( GCC_VERSION VERSION_EQUAL 4.8.0 OR GCC_VERSION VERSION_GREATER 4.8.0 )
