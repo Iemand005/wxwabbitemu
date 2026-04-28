@@ -1,4 +1,3 @@
-#include "stdafx.h"
 
 #include "core.h"
 #include "alu.h"

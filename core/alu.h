@@ -1,6 +1,9 @@
 #ifndef ALU_H
 #define ALU_H
 
+// #include "stdafx.h"
+
+
 #define SIGN_MASK 0x80
 #define ZERO_MASK 0x40
 #define X5_MASK 0x20
