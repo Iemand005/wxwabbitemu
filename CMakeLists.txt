@@ -118,7 +118,7 @@ if(MSVC)
     set_target_properties(wxWabbitemu PROPERTIES LINK_FLAGS "/SUBSYSTEM:WINDOWS")
 		
 		set(wxUSE_RC_MANIFEST ON CACHE BOOL "" FORCE)
-		set(wxUSE_DPI_AWARE_MANIFEST 2 CACHE STRING "" FORCE)
+    set(wxUSE_DPI_AWARE_MANIFEST "per-monitor" CACHE STRING "" FORCE)
 endif()
 
 # Enable Unicode
