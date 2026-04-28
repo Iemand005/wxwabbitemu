@@ -94,7 +94,7 @@ target_include_directories(wxWabbitemu PUBLIC
                            )
 
 # target_link_libraries(wxWabbitemu ${wxWidgets_LIBRARIES})
-target_link_libraries(wxWabbitemu PRIVATE wx::base)
+target_link_libraries(wxWabbitemu PRIVATE wx::core wx::base)
 
 add_definitions(-DHIGH_SHADE_GIF -DVERBOSE -D_LINUX -DWXVER)
 

@@ -5,14 +5,16 @@
 #include "coretypes.h"
 
 #ifdef WXVER
-#include <wx/frame.h>
+#include <wx/wx.h>
+// #include <wx/frame.h>
 #endif
 #include "core.h"
 #include "lcd.h"
 #include "keys.h"
 #include "link.h"
 
-#ifdef _WINDOWS
+#undef WINVER
+#ifdef WINVER
 #include "Wabbitemu_h.h"
 #include "sound.h"
 #include "DropTarget.h"
