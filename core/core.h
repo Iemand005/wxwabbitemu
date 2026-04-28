@@ -85,10 +85,10 @@ union { \
 #define regpair(name1,name2,fullname) \
 union { \
 	struct { \
-		BYTE name2; \
-		BYTE name1; \
+		uint8_t name2; \
+		uint8_t name1; \
 	}; \
-	WORD fullname; \
+	uint16_t fullname; \
 }
 #endif
 
@@ -244,11 +244,11 @@ typedef struct pio_context {
 } pio_context_t, pioc;
 
 typedef struct reverse_time {
-	BYTE flag;
+	uint8_t flag;
 	regpair(upper_data1, lower_data1, data1);
 	regpair(upper_data2, lower_data2, data2);
-	BYTE bus;
-	BYTE r;
+	uint8_t bus;
+	uint8_t r;
 } reverse_time_t;
 
 typedef struct CPU {
