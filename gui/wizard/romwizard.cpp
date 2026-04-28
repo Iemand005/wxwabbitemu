@@ -1,7 +1,5 @@
 #include "romwizard.h"
-extern "C" {
 #include "exportvar.h"
-}
 #include "gui.h"
 #include "fileutilities.h"
 

@@ -1,7 +1,5 @@
 #include "wizardstart.h"
-extern "C" {
 #include "var.h"
-}
 #include "gui.h"
 
 BEGIN_EVENT_TABLE(WizardStartPage, wxWizardPage)

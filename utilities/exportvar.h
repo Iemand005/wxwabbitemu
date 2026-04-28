@@ -15,10 +15,6 @@ typedef struct {
 	int eof;
 } MFILE;
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 MFILE *ExportVar(LPCALC, TCHAR *, symbol83P_t *);
 MFILE *ExportApp(LPCALC, TCHAR *, apphdr_t *);
 MFILE *ExportRom(TCHAR *lpszFile, LPCALC lpCalc);
@@ -33,9 +29,5 @@ int meof(MFILE *);
 int mgetc(MFILE *);
 int mputc(int, MFILE *);
 int msize(MFILE *);
-
-#ifdef __cplusplus
-}
-#endif
 
 #endif

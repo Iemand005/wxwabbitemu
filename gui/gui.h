@@ -20,9 +20,7 @@
 #include "guilcd.h"
 #include "guiskinwindow.h"
 #include "guivartree.h"
-extern "C" {
-	#include "calc.h"
-}
+#include "calc.h"
 
 enum
 {
