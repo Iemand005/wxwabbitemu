@@ -395,7 +395,7 @@ TCHAR *symbol_to_string(CPU_t *cpu, symbol83P_t *sym, TCHAR *buffer) {
 	case RealObj: {
 		uint16_t ptr = sym->address;
 		TCHAR *p = buffer;
-		BOOL is_imaginary = FALSE;
+		bool is_imaginary = FALSE;
 	TI_num_extract:
 		;
 		uint8_t type = mem_read(cpu->mem_c, ptr++);

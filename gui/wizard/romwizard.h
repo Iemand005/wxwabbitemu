@@ -16,7 +16,7 @@ private:
 	void OnPageChanged(wxWizardEvent &);
 	void OnPageChanging(wxWizardEvent &);
 	void ModelInit(LPCALC lpCalc, int model);
-	BOOL ExtractBootFree(wxString &bootfreePath, int model);
+	bool ExtractBootFree(wxString &bootfreePath, int model);
 protected:
 	DECLARE_EVENT_TABLE()
 public:

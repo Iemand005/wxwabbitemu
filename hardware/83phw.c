@@ -244,7 +244,7 @@ static void port6(CPU_t *cpu, device_t *dev) {
 		cpu->bus = (cpu->mem_c->banks[1].ram << 6) + cpu->mem_c->banks[1].page;
 		cpu->input = FALSE;
 	} else if (cpu->output) {
-		BOOL ram = (cpu->bus >> 6) & 1;
+		bool ram = (cpu->bus >> 6) & 1;
 		if (ram)
 			change_page(cpu, 1, (cpu->bus & 0x1f) % cpu->mem_c->ram_pages, ram);
 		else
@@ -258,7 +258,7 @@ static void port7(CPU_t *cpu, device_t *dev) {
 		cpu->bus = ((cpu->mem_c->banks[2].ram) << 6) + cpu->mem_c->banks[2].page;
 		cpu->input = FALSE;
 	} else if (cpu->output) {
-		BOOL ram = (cpu->bus >> 6) & 1;
+		bool ram = (cpu->bus >> 6) & 1;
 		if (ram)
 			change_page(cpu, 2, (cpu->bus & 0x1f) % cpu->mem_c->ram_pages, ram);
 		else
