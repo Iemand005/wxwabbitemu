@@ -4,3 +4,6 @@
 [submodule "external/efsw"]
 	path = external/efsw
 	url = https://github.com/SpartanJ/efsw
+[submodule "external/spasm-ng"]
+	path = external/spasm-ng
+	url = https://github.com/Iemand005/spasm-ng
