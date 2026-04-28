@@ -521,16 +521,26 @@ void WabbitemuFrame::OnShow(wxShowEvent& event) {
 }
 
 void WabbitemuFrame::OnSize(wxSizeEvent& event) {
-	wxSize s = event.GetSize();
-    
-	double aspectRatio = 96.0 / 100.0;
+	if (IsIconized()) {
+			event.Skip();
+			return;
+	}
 
-	wxSize clientSize = GetClientSize();
-	int idealHeight = (int)((double)clientSize.x / aspectRatio);
+	wxSize currentClientSize = GetClientSize();
 
-	if (std::abs(clientSize.y - idealHeight) > 2) {
-        this->SetClientSize(clientSize.x, idealHeight);
-    }
+	int lcdWidth = 96; // Of haal dit dynamisch op
+	int lcdHeight = 64; 
+	double ratio = (double)lcdWidth / (double)lcdHeight;
+
+	int targetHeight = (int)(currentClientSize.x / ratio);
+
+	if (GetStatusBar() && GetStatusBar()->IsShown()) {
+		targetHeight += GetStatusBar()->GetSize().y;
+	}
+
+	if (std::abs(currentClientSize.y - targetHeight) > 2) {
+		this->SetClientSize(currentClientSize.x, targetHeight);
+	}
 
 	event.Skip();
 }
