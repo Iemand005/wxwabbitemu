@@ -345,7 +345,7 @@ void gif_writer(int shades) {
 			gif_header[7] = gif_xs >> 8;
 			gif_header[8] = gif_ys;
 			gif_header[9] = gif_ys >> 8;
-#ifdef WINVER
+#ifdef WIN32
 			_tfopen_s(&fp, gif_file_name, _T("wb"));
 #else
 			fp = _tfopen_s(gif_file_name, "wb");

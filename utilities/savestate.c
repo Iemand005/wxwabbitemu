@@ -323,7 +323,7 @@ unsigned short ReadShort(CHUNK_t* chunk, BOOL *valOK) {
 }
 
 unsigned short ReadShort(CHUNK_t* chunk) {
-	ReadShort(chunk, NULL);
+	return ReadShort(chunk, NULL);
 }
 
 unsigned int ReadInt(CHUNK_t* chunk, BOOL *valOK) {
@@ -345,7 +345,7 @@ unsigned int ReadInt(CHUNK_t* chunk, BOOL *valOK) {
 }
 
 unsigned int ReadInt(CHUNK_t* chunk) {
-	ReadInt(chunk, NULL);
+	return ReadInt(chunk, NULL);
 }
 
 float ReadFloat(CHUNK_t* chunk) {
