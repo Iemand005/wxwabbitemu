@@ -5,7 +5,8 @@
 #include "link.h"
 #include "exportvar.h"
 
-void intelhex (MFILE*, const unsigned char*, int size, int page = 0, int start_address = 0x4000);
+void intelhex (MFILE*, const unsigned char*, int size);
+void intelhex2 (MFILE*, const unsigned char*, int size, int page, int start_address);
 
 const char fileheader[]= {
 	'*','*','T','I','8','3','F','*',0x1A,0x0A,0x00};
@@ -137,8 +138,8 @@ int mprintf(MFILE* mf, const TCHAR *format, ...) {
 	} else {
 		TCHAR buffer[1024];
 		int i;
-#ifdef WINVER
-		vsprintf_s(buffer, format, list);
+#ifdef WIN32
+		vsprintf_s(buffer, format, list, NULL);
 #else
 		_vstprintf(buffer, format, list);
 #endif
@@ -304,9 +305,9 @@ MFILE * ExportOS(TCHAR *lpszFile, unsigned char *buffer, int size) {
 	*(buffer + 0x56) = 0xFF;
 	mprintf(file, _T("\r\n"));
 	//page 0 needs to start at 0x0000
-	intelhex(file, (const unsigned char *) buffer, PAGE_SIZE, 0, 0x0000);
+	intelhex2(file, (const unsigned char *) buffer, PAGE_SIZE, 0, 0x0000);
 	if (size - PAGE_SIZE > 0) {
-		intelhex(file, (const unsigned char *) buffer + PAGE_SIZE, size - PAGE_SIZE, 1,  0x4000);
+		intelhex2(file, (const unsigned char *) buffer + PAGE_SIZE, size - PAGE_SIZE, 1,  0x4000);
 	}
 	mprintf(file, _T(":00000001FF"));
 	//TODO: checksum
@@ -326,12 +327,15 @@ MFILE * ExportRom(TCHAR *lpszFile, LPCALC lpCalc) {
 	return file;
 }
 
+void intelhex (MFILE* file, const unsigned char* buffer, int size) {
+	intelhex2(file, buffer, size, 0, 0x4000);
+}
 
 /* Convert binary buffer to Intel hex in TI format
  * All pages are only $4000 bytes long. 
  * stolen from spasm's export.c  to make my 1/2 hour deadline
  */
-void intelhex (MFILE* outfile, const unsigned char* buffer, int size, int page, int start_address) {
+void intelhex2 (MFILE* outfile, const unsigned char* buffer, int size, int page, int start_address) {
 	const TCHAR hexstr[] = _T("0123456789ABCDEF");
 	int bpnt = 0;
 	unsigned int address, ci, temp, i;
