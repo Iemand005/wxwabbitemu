@@ -40,11 +40,7 @@ static TCHAR gif_fn_backup[MAX_PATH];
  */
 bool get_gif_filename() {
 	int i;
-#ifdef _WINDOWS
-	StringCbCopy(gif_fn_backup, sizeof(gif_fn_backup), gif_file_name);
-#else
-	_tcscpy_s(gif_fn_backup, gif_file_name);
-#endif
+	wxStrcpy(gif_fn_backup, gif_file_name);
 	if (gif_autosave) {
 		/* do file save */
 		if (gif_use_increasing) {
@@ -257,11 +253,8 @@ void handle_screenshot() {
 			//WriteRIFFIndex();
 			gif_newframe = 1;
 			gif_file_num++;
-#ifdef _WINDOWS
-			StringCbCopy(gif_file_name, sizeof(gif_file_name), gif_fn_backup);
-#else
-			_tcscpy_s(gif_file_name, gif_fn_backup);
-#endif
+
+			wxStrcpy (gif_file_name, gif_fn_backup);
 			break;
 		}
 	}

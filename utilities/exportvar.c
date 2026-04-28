@@ -61,11 +61,12 @@ MFILE *mopen(const TCHAR *filename, const TCHAR * mode) {
 	MFILE* mf= (MFILE *) malloc(sizeof(MFILE));
 	memset(mf, 0, sizeof(MFILE));
 	if (filename) {
-#ifdef WIN32
-		fopen_s(&mf->stream, filename, mode);
-#else
-		mf->stream = _tfopen_s(filename, mode);
-#endif
+		// TODO: Replace:
+// #ifdef WIN32
+// 		fopen_s(&mf->stream, filename, mode);
+// #else
+// 		mf->stream = _tfopen_s(filename, mode);
+// #endif
 		if (!mf->stream) {
 			free(mf);
 			return NULL;
@@ -138,11 +139,11 @@ int mprintf(MFILE* mf, const TCHAR *format, ...) {
 	} else {
 		TCHAR buffer[1024];
 		int i;
-#ifdef WIN32
-		vsprintf_s(buffer, 1024, format, list);
-#else
-		_vstprintf(buffer, format, list);
-#endif
+// #ifdef WIN32 TODO: Replace:
+// 		vsprintf_s(buffer, 1024, format, list);
+// #else
+// 		_vstprintf(buffer, format, list);
+// #endif
 		unsigned long long sz_length = _tcslen(buffer);
 		if (mf->pnt >= mf->size) {
 			temp = (unsigned char *) realloc(mf->data, mf->size+sz_length);

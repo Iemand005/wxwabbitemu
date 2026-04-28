@@ -112,8 +112,8 @@ void GetAppDataString(TCHAR *buffer, int len) {
 	if (!env) {
 		return;
 	}
-	StringCbCopy(buffer, len, env);
-	StringCbCat(buffer, len, _T("\\Wabbitemu\\"));
+	wxStrcpy(buffer, env);
+	// StringCbCat(buffer, len, _T("\\Wabbitemu\\")); TODO:: Acat meow
 	free(env);
 #else
 #ifdef _UNICODE

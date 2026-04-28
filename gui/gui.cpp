@@ -594,7 +594,7 @@ All Files (*.*)|*.*\0");
 	wxArrayString filePaths;
 	dialog.GetPaths(filePaths);
 	for (int i = 0; i < filePaths.GetCount(); i++) {
-		SendFile(lpCalc, filePaths[i].c_str(), SEND_CUR);
+		// SendFile(lpCalc, filePaths[i].c_str(), SEND_CUR); TODO: Fix
 		if (!_tcscmp(filePaths[i].c_str(), lpCalc->rom_path)) {
 			//we've had a rom change
 			gui_frame_update();

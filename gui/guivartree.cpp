@@ -153,7 +153,7 @@ int VarTree::FillDesc(wxTreeItemId &hSelect, TCHAR *filePath) {
 					if (App_Name_to_String(&Tree[slot].applist.apps[i], varString)) {
 						_tcscat(varString, _T(".8xk"));
 						_tcscpy(filePath, varString);
-						MFILE *outfile = ExportApp(&calcs[slot], NULL, &Tree[slot].applist.apps[i]);
+						MFILE *outfile = ::ExportApp(&calcs[slot], NULL, &Tree[slot].applist.apps[i]);
 						int size = msize(outfile);
 						mclose(outfile);
 						return size;
@@ -170,7 +170,7 @@ int VarTree::FillDesc(wxTreeItemId &hSelect, TCHAR *filePath) {
 						_tcscat(varString, wxT("."));
 						_tcscat(varString, (const TCHAR *) type_ext[Tree[slot].sym.symbols[i].type_ID]);
 						_tcscpy(filePath, varString);
-						MFILE *outfile = ExportVar(&calcs[slot], NULL, &Tree[slot].sym.symbols[i]);
+						MFILE *outfile = ::ExportVar(&calcs[slot], NULL, &Tree[slot].sym.symbols[i]);
 						int size = msize(outfile);
 						mclose(outfile);
 						return size;
@@ -191,7 +191,7 @@ void *VarTree::FillFileBuffer(wxTreeItemId &hSelect, void *buf) {
 		if (Tree[slot].model) {
 			for(i = 0; i < Tree[slot].applist.count; i++) {
 				if (Tree[slot].hApps[i] && *Tree[slot].hApps[i] == hSelect) {
-					MFILE *outfile = ExportApp(&calcs[slot], NULL, &Tree[slot].applist.apps[i]);
+					MFILE *outfile = ::ExportApp(&calcs[slot], NULL, &Tree[slot].applist.apps[i]);
 					if(!outfile) {
 						return NULL;
 					}
@@ -205,7 +205,7 @@ void *VarTree::FillFileBuffer(wxTreeItemId &hSelect, void *buf) {
 			for(i = 0; i < (u_int) (Tree[slot].sym.last - Tree[slot].sym.symbols + 1); i++) {
 				if (Tree[slot].hVars[i] && *Tree[slot].hVars[i] == hSelect) {
 					if (Symbol_Name_to_String(Tree[slot].model, &Tree[slot].sym.symbols[i], varString)) {
-						MFILE *outfile = ExportVar(&calcs[slot], NULL, &Tree[slot].sym.symbols[i]);
+						MFILE *outfile = ::ExportVar(&calcs[slot], NULL, &Tree[slot].sym.symbols[i]);
 						if(!outfile) {
 							return NULL;
 						}

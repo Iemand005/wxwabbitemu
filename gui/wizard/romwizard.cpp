@@ -135,7 +135,7 @@ void RomWizard::OnFinish(wxWizardEvent &event) {
 	if (startPage->m_browseRadio->GetValue()) {
 		wxString path = startPage->m_filePicker1->GetPath();
 		LPCALC lpCalc = calc_slot_new();
-		bool success = rom_load(lpCalc, path.c_str());
+		bool success = rom_load(lpCalc, (TCHAR*)(const TCHAR*)path.wx_str());
 		if (!success) {
 			//should never get here
 			return;
@@ -155,7 +155,7 @@ void RomWizard::OnFinish(wxWizardEvent &event) {
 			
 			//if you don't want to load an OS, fine...
 			if (osPath.length() > 0) {
-				TIFILE_t *tifile = newimportvar(osPath.fn_str());
+				TIFILE_t *tifile = newimportvar((TCHAR*)(const TCHAR*)osPath.wx_str());
 				if (tifile == NULL || tifile->type != FLASH_TYPE) {
 					wxMessageBox(_T("Error: OS file is corrupt!"), _T("Error"), wxOK | wxICON_ERROR);
 					return;

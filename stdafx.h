@@ -32,20 +32,21 @@
 // #include <stdlib.h>
 // #include <crtdbg.h>
 
-#include <stdio.h>
-#include <sys/types.h>
-#include <mmsystem.h>
-#include <stddef.h>
-#include <time.h>
+// #include <stdio.h>
+// #include <sys/types.h>
+// #include <mmsystem.h>
+// #include <stddef.h>
+// #include <time.h>
 
 
 #ifdef __cplusplus
-#include <gdiplus.h>
-using namespace Gdiplus;
-#include <atlbase.h>
-#include <atlcom.h>
-#include <atlctl.h>
-using namespace ATL;
+// #include <gdiplus.h>
+// using namespace Gdiplus;
+// #include <atlbase.h>
+// #include <atlcom.h>
+// #include <atlctl.h>
+// using namespace ATL;
+
 #include <map>
 #include <list>
 #include <vector>
@@ -152,7 +153,7 @@ typedef char *LPCTSTR;
 // #include <wx/wx.h>
 #undef _T
 #endif
-
+::
 typedef void *LPVOID;
 #define MAX_PATH 256
 #ifndef _T

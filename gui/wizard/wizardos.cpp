@@ -42,7 +42,7 @@ bool WizardOSPage::UpdateOSPathState(bool error) {
 	wxString path = m_filePicker2->GetPath();
 	
 	if (!path.IsEmpty()) {
-		tifile = newimportvarCheck(path.c_str(), TRUE);
+		tifile = newimportvarCheck((TCHAR*)(const TCHAR*)path.wx_str(), TRUE);
 		if (tifile == NULL || !((tifile->type == FLASH_TYPE) && (tifile->flash) && (tifile->flash->type == FLASH_TYPE_OS))) {
 			if (error) {
 				dial = new wxMessageDialog(NULL, wxT("Invalid OS file specified! Please select a valid OS file, and try again."),

@@ -160,7 +160,9 @@ typedef struct DEBUG_STATE {
 #endif
 #define MAX_SPEED 100*50
 
-typedef struct tagCALC CALC, *LPCALC;
+// typedef struct tagCALC CALC, *LPCALC;
+struct tagCALC;
+typedef struct tagCALC* LPCALC;
 
 void calc_turn_on(LPCALC);
 LPCALC calc_slot_new(void);
@@ -182,7 +184,7 @@ void free_backups(LPCALC);
 void free_backup(debugger_backup *);
 #endif
 
-bool rom_load(LPCALC lpCalc, TCHAR * FileName);
+bool rom_load(LPCALC lpCalc, const TCHAR * FileName);
 void calc_slot_free(LPCALC);
 
 void calc_unpause_linked();

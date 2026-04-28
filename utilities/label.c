@@ -122,11 +122,8 @@ int labels_app_load(LPCALC lpCalc, TCHAR * lpszFileName) {
 			length = (int) _tcslen(name);
 			if (!label_search_tios(name, equate)) {
 				label->name = (TCHAR *) malloc((length + 1) * sizeof(TCHAR));
-#ifdef _WINDOWS
-				StringCchCopy(label->name, length + 1, name);
-#else
-				_tcscpy(label->name, name);
-#endif
+
+				wxStrcpy (label->name, name);
 
 				label->addr = equate & 0xFFFF;
 

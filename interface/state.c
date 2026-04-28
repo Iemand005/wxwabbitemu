@@ -165,12 +165,8 @@ symbol83P_t *search_symlist(symlist_t *symlist, const TCHAR *name, size_t name_l
 }
 
 TCHAR *App_Name_to_String(apphdr_t *app, TCHAR *buffer) {
-#ifdef WINVER
-	StringCbCopy(buffer, _tcslen(app->name) + 1, app->name);
-	return buffer;
-#else
-	return _tcscpy_s(buffer, app->name);
-#endif
+
+	return wxStrcpy(buffer, app->name);
 }
 
 
@@ -178,12 +174,11 @@ TCHAR *App_Name_to_String(apphdr_t *app, TCHAR *buffer) {
 TCHAR *Symbol_Name_to_String(int model, symbol83P_t *sym, TCHAR *buffer) {
 	const TCHAR ans_name[] = {tAns, 0x00, 0x00};
 	if (memcmp(sym->name, ans_name, 3) == 0) {
-		StringCbCopy(buffer, 10, _T("Ans"));
-		return buffer;
+		return wxStrcpy(buffer, _T("Ans"));
 	}
 	
 	if (model == TI_86) {
-		StringCbCopy(buffer, 10, sym->name);
+		wxStrcpy(buffer, sym->name);
 		return buffer;
 	} else {
 		switch(sym->type_ID) {
@@ -191,33 +186,33 @@ TCHAR *Symbol_Name_to_String(int model, symbol83P_t *sym, TCHAR *buffer) {
 			case ProtProgObj:
 			case AppVarObj:
 			case GroupObj: {
-				errno_t error = StringCbCopy(buffer, 10, sym->name);
+				errno_t error = wxStrcpy(buffer, sym->name);
 				return buffer;
 			}
 			case PictObj:
-				StringCbPrintf(buffer, 10, _T("Pic%d"), circ10(sym->name[1]));
+				// StringCbPrintf(buffer, 10, _T("Pic%d"), circ10(sym->name[1]));
 				return buffer;
 			case GDBObj:
-				StringCbPrintf(buffer, 10, _T("GDB%d"), circ10(sym->name[1]));
+				// StringCbPrintf(buffer, 10, _T("GDB%d"), circ10(sym->name[1]));
 				return buffer;
 			case StrngObj:
-				StringCbPrintf(buffer, 10, _T("Str%d"), circ10(sym->name[1]));
+				// StringCbPrintf(buffer, 10, _T("Str%d"), circ10(sym->name[1]));
 				return buffer;		
 			case RealObj:
 			case CplxObj:
-				StringCbPrintf(buffer, 10, _T("%c"), sym->name[0]);
+				// StringCbPrintf(buffer, 10, _T("%c"), sym->name[0]);
 				return buffer;
 			case ListObj:
 			case CListObj:
 				if ((u_char) sym->name[1] < 6) {
-					StringCbPrintf(buffer, 10, _T("L%d"), sym->name[1] + 1); //L1...L6
+					// StringCbPrintf(buffer, 10, _T("L%d"), sym->name[1] + 1); //L1...L6
 				} else {
-					StringCbPrintf(buffer, 10, _T("%s"), sym->name + 1); // No Little L
+					// StringCbPrintf(buffer, 10, _T("%s"), sym->name + 1); // No Little L
 				}
 				return buffer;
 			case MatObj:
 				if (sym->name[0] == 0x5C) {
-					StringCbPrintf(buffer, 10, _T("[%c]"), 'A' + sym->name[1]);
+					// StringCbPrintf(buffer, 10, _T("[%c]"), 'A' + sym->name[1]);
 					return buffer;
 				}
 				return NULL;
@@ -233,27 +228,27 @@ TCHAR *Symbol_Name_to_String(int model, symbol83P_t *sym, TCHAR *buffer) {
 					u_char b = sym->name[1] & 0x0F;
 					switch(sym->name[1] & 0xF0) {
 						case 0x10: //Y1
-							StringCbPrintf(buffer, 10, _T("Y%d"),circ10(b));
+							// StringCbPrintf(buffer, 10, _T("Y%d"),circ10(b));
 							return buffer;
 						case 0x20: //X1t Y1t
-							StringCbPrintf(buffer, 10, _T("X%dT"), ((b/2)+1)%6);
+							// StringCbPrintf(buffer, 10, _T("X%dT"), ((b/2)+1)%6);
 							if (b % 2) {
 								buffer[0] = 'Y';
 							}
 							return buffer;
 						case 0x40: //r1
-							StringCbPrintf(buffer, 10, _T("R%d"),(b+1)%6);
+							// StringCbPrintf(buffer, 10, _T("R%d"),(b+1)%6);
 							return buffer;
 						case 0x80: //Y1
 							switch (b) {
 								case 0: 
-									StringCbCopy(buffer, 10, _T("Un"));
+									// StringCbCopy(buffer, 10, _T("Un"));
 									return buffer;
 								case 1: 
-									StringCbCopy(buffer, 10, _T("Vn"));
+									// StringCbCopy(buffer, 10, _T("Vn"));
 									return buffer;
 								case 2: 
-									StringCbCopy(buffer, 10, _T("Wn"));
+									// StringCbCopy(buffer, 10, _T("Wn"));
 									return buffer;
 							}
 						default: 
@@ -419,11 +414,12 @@ TCHAR *symbol_to_string(CPU_t *cpu, symbol83P_t *sym, TCHAR *buffer) {
 				*p++ = FP[i] + '0';
 				if ((i + 1) < sigdigs && i == 0) *p++ = '.';
 			}
-#ifdef WINVER
-			StringCbPrintf(p, _tcslen(p), _T("*10^%d"), exp);
-#else
-			_tprintf_s(p, _T("*10^%d"), exp);
-#endif
+// TODO: Replace this:
+			// #ifdef WINVER
+// 			StringCbPrintf(p, _tcslen(p), _T("*10^%d"), exp);
+// #else
+// 			_tprintf_s(p, _T("*10^%d"), exp);
+// #endif
 			p += _tcslen(p);
 		} else {
 			for (i = min(exp, 0); i < sigdigs || i < exp; i++) {
@@ -517,12 +513,7 @@ TCHAR *symbol_to_string(CPU_t *cpu, symbol83P_t *sym, TCHAR *buffer) {
 	
 		
 	default:
-#ifdef WINVER
-		StringCbCopy(buffer, _tcslen(buffer), _T("unsupported"));
-#else
-		_tcscpy_s(buffer, _T("unsupported"));
-#endif
-		return buffer;
+		return wxStrcpy(buffer, _T("unsupported"));
 	}
 }
 

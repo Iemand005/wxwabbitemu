@@ -642,11 +642,11 @@ TIFILE_t* ImportVarData(FILE *infile, TIFILE_t *tifile, int varNumber) {
 	return tifile;
 }
 
-TIFILE_t* newimportvar(TCHAR * filePath) {
+TIFILE_t* newimportvar(const TCHAR * filePath) {
 	return newimportvarCheck(filePath, TRUE);
 }
 
-TIFILE_t* newimportvarCheck(TCHAR * filePath, bool only_check_header) {
+TIFILE_t* newimportvarCheck(const TCHAR * filePath, bool only_check_header) {
 	FILE *infile = NULL;
 	TIFILE_t *tifile;
 	
@@ -654,11 +654,7 @@ TIFILE_t* newimportvarCheck(TCHAR * filePath, bool only_check_header) {
 	const TCHAR *pext = _tcsrchr(filePath, '.');
 	if (pext != NULL)
 	{
-#ifdef _WINDOWS
-		StringCbCopy(extension, sizeof(extension), pext);
-#else
-		_tcscpy(extension, pext);
-#endif
+		wxStrcpy(extension, pext);
 	}
 
 	tifile = InitTiFile();

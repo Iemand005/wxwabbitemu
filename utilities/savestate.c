@@ -1086,17 +1086,17 @@ void WriteSave(const TCHAR *fn, SAVESTATE_t* save, int compress) {
 		ofile = _tfopen_s(fn, "wb");
 #endif
 	} else {
-#ifdef WIN32
-		tmpnam_s(tmpfn, sizeof(tmpfn));
-		GetAppDataString(temp_save, sizeof(temp_save));
-		StringCbCat(temp_save, sizeof(temp_save), tmpfn);
-		_tfopen_s(&ofile, temp_save, _T("wb"));
-#else
-		tmpnam(tmpfn);
-		strcpy(temp_save, getenv("appdata"));
-		strcat(temp_save, tmpfn);
-		ofile = fopen(temp_save,"wb");
-#endif
+// #ifdef WIN32 TODO: Replace
+// 		tmpnam_s(tmpfn, sizeof(tmpfn));
+// 		GetAppDataString(temp_save, sizeof(temp_save));
+// 		StringCbCat(temp_save, sizeof(temp_save), tmpfn);
+// 		_tfopen_s(&ofile, temp_save, _T("wb"));
+// #else
+// 		tmpnam(tmpfn);
+// 		strcpy(temp_save, getenv("appdata"));
+// 		strcat(temp_save, tmpfn);
+// 		ofile = fopen(temp_save,"wb");
+// #endif
 	}
 		
 	if (!ofile) {
@@ -1187,17 +1187,17 @@ SAVESTATE_t* ReadSave(FILE *ifile) {
 	string[8] = 0;
 	if (strncmp(DETECT_CMP_STR, string, 8) == 0) {
 		i = fgetc(ifile);
-#ifdef WINVER
-		_ttmpnam_s(tmpfn);
-		GetAppDataString(temp_save, sizeof(temp_save));
-		StringCbCat(temp_save, sizeof(temp_save), tmpfn);
-		_tfopen_s(&tmpfile, temp_save, _T("wb"));
-#else
-		tmpnam(tmpfn);
-		strcpy(temp_save, getenv("appdata"));
-		strcat(temp_save, tmpfn);
-		tmpfile = fopen(temp_save,"wb");
-#endif
+// #ifdef WINVER TODO: Replace
+// 		_ttmpnam_s(tmpfn);
+// 		GetAppDataString(temp_save, sizeof(temp_save));
+// 		StringCbCat(temp_save, sizeof(temp_save), tmpfn);
+// 		_tfopen_s(&tmpfile, temp_save, _T("wb"));
+// #else
+// 		tmpnam(tmpfn);
+// 		strcpy(temp_save, getenv("appdata"));
+// 		strcat(temp_save, tmpfn);
+// 		tmpfile = fopen(temp_save,"wb");
+// #endif
 		if (!tmpfile) {
 			return NULL;
 		}

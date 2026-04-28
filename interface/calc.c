@@ -257,7 +257,7 @@ void check_bootfree_and_update(LPCALC lpCalc) {
 #endif
 }
 
-bool rom_load(LPCALC lpCalc, TCHAR * FileName) {
+bool rom_load(LPCALC lpCalc, const TCHAR * FileName) {
 	if (lpCalc == NULL) {
 		return FALSE;
 	}
@@ -305,11 +305,7 @@ bool rom_load(LPCALC lpCalc, TCHAR * FileName) {
 		}
 
 		LoadSlot(tifile->save, lpCalc);
-#ifdef WIN32
-		StringCbCopy(lpCalc->rom_path, sizeof(lpCalc->rom_path), FileName);
-#else
-		_tcscpy_s(lpCalc->rom_path, FileName);
-#endif
+		wxStrcpy(lpCalc->rom_path, FileName);
 		FindRomVersion(tifile->model, lpCalc->rom_version, lpCalc->mem_c.flash, lpCalc->mem_c.flash_size);
 	} else if (tifile->type == ROM_TYPE) {
 
@@ -364,11 +360,7 @@ bool rom_load(LPCALC lpCalc, TCHAR * FileName) {
 
 		lpCalc->active = TRUE;
 		memcpy(lpCalc->rom_version, tifile->rom->version, sizeof(lpCalc->rom_version));
-#ifdef WINVER
-		StringCbCopy(lpCalc->rom_path, sizeof(lpCalc->rom_path), FileName);
-#else
-		_tcscpy_s(lpCalc->rom_path, FileName);
-#endif
+		wxStrcpy(lpCalc->rom_path, FileName);
 		
 
 	} else {
@@ -685,11 +677,7 @@ bool calc_start_screenshot(calc_t *calc, const TCHAR *filename)
 	if (gif_write_state == GIF_IDLE)
 	{
 		gif_write_state = GIF_START;
-#ifdef _WINDOWS
-		StringCbCopy(gif_file_name, MAX_PATH, filename);
-#else
-		_tcscpy_s(gif_file_name, filename);
-#endif
+		wxStrcpy(gif_file_name, filename);
 		return TRUE;
 	}
 	else

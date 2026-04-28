@@ -2,6 +2,7 @@
 #define EXPORTVAR_H
 
 #include "link.h"
+#include "calc.h"
 
 typedef struct {
 	FILE* stream;
