@@ -523,7 +523,7 @@ void WabbitemuFrame::OnShow(wxShowEvent& event) {
 void WabbitemuFrame::OnSize(wxSizeEvent& event) {
 	wxSize s = event.GetSize();
     
-	double aspectRatio = 96.0 / 64.0;
+	double aspectRatio = 96.0 / 100.0;
 
 	wxSize clientSize = GetClientSize();
 	int idealHeight = (int)((double)clientSize.x / aspectRatio);
