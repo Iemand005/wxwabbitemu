@@ -38,7 +38,6 @@ set(wxUSE_ZLIB    OFF CACHE BOOL "Disable Zlib compression")
 set(wxUSE_LIBJPEG OFF CACHE BOOL "" FORCE)
 set(wxUSE_LIBTIFF OFF CACHE BOOL "" FORCE)
 set(wxUSE_EXPAT   OFF CACHE BOOL "" FORCE)
-set(wxUSE_ZLIB    OFF CACHE BOOL "" FORCE)
 set(wxUSE_WEBVIEW OFF CACHE BOOL "" FORCE)
 set(wxUSE_NANOSVG OFF CACHE BOOL "" FORCE)
 set(wxUSE_LIBWEBP OFF CACHE BOOL "" FORCE)
@@ -64,8 +63,9 @@ set(wxUSE_TREEBOOK    OFF CACHE BOOL "" FORCE)
 set(wxUSE_DOC_VIEW_FRAMEWORK OFF CACHE BOOL "" FORCE)
 set(wxUSE_PRINTING_ARCHITECTURE OFF CACHE BOOL "" FORCE)
 
+set(wxUSE_ZLIB builtin CACHE BOOL "" FORCE)
 set(wxUSE_IMAGE ON CACHE BOOL "" FORCE)
-set(wxUSE_LIBPNG "sys" CACHE BOOL "" FORCE)
+set(wxUSE_LIBPNG builtin CACHE BOOL "" FORCE)
 set(wxUSE_TOOLBAR ON CACHE BOOL "" FORCE)
 set(wxUSE_TOOLBAR_NATIVE ON CACHE BOOL "" FORCE)
 
@@ -172,7 +172,6 @@ target_include_directories(wxWabbitemu PUBLIC
 # target_link_libraries(wxWabbitemu ${wxWidgets_LIBRARIES})
 target_link_libraries(wxWabbitemu PRIVATE
 	wx::core
-	wx::base
 	libspasm
 	efsw
 )
