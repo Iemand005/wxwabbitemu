@@ -98,8 +98,11 @@ endif()
 file(GLOB_RECURSE CFILES "${CMAKE_SOURCE_DIR}/*.c")
 set_source_files_properties(${CFILES} PROPERTIES LANGUAGE CXX )
 
-if(WIN32)
-    set(RESOURCES resource.rc)
+# if(WIN32 && MSVC)
+if(MSVC)
+    # set(RESOURCES resource.rc)
+
+    set(RESOURCES "")
 else()
     set(RESOURCES "")
 endif()

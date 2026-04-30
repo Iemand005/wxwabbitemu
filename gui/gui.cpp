@@ -336,9 +336,9 @@ WabbitemuFrame::WabbitemuFrame(LPCALC lpCalc) : wxFrame(NULL, wxID_ANY, wxT("Wab
 	wxMenuItem* m_separator1;
 	m_separator1 = m_fileMenu->AppendSeparator();
 	
-	wxMenuItem* m_gifMenuItem;
-	m_gifMenuItem = new wxMenuItem( m_fileMenu, ID_File_Gif, wxString( wxT("Record GIF") ) + wxT('\t') + wxT("Backspace"), wxEmptyString, wxITEM_NORMAL );
-	m_fileMenu->Append( m_gifMenuItem );
+	// wxMenuItem* m_gifMenuItem;
+	// m_gifMenuItem = new wxMenuItem( m_fileMenu, ID_File_Gif, wxString( wxT("Record GIF") ) + wxT('\t') + wxT("Backspace"), wxEmptyString, wxITEM_NORMAL );
+	// m_fileMenu->Append( m_gifMenuItem );
 	
 	wxMenuItem* m_separator2;
 	m_separator2 = m_fileMenu->AppendSeparator();
