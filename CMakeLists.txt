@@ -17,8 +17,17 @@ set( wxWidgets_CONFIG_OPTIONS ${wxWidgets_CONFIG_OPTIONS} --static=no )
 # find_package(wxWidgets REQUIRED adv net core base)
 # include(${wxWidgets_USE_FILE})
 
-# Include wxWidgets from submodule instead
 set(wxBUILD_SHARED OFF CACHE BOOL "" FORCE)
+
+set(wxBUILD_SAMPLES OFF CACHE BOOL "Disable samples")
+set(wxBUILD_TESTS OFF CACHE BOOL "Disable tests")
+set(wxBUILD_DEMOS OFF CACHE BOOL "Disable demos")
+
+set(wxUSE_AUI OFF CACHE BOOL "Disable AUI")
+set(wxUSE_HTML OFF CACHE BOOL "Disable HTML")
+set(wxUSE_WEBVIEW OFF CACHE BOOL "Disable WebView")
+set(wxUSE_MEDIACTRL OFF CACHE BOOL "Disable MediaCtrl")
+set(wxUSE_RICHTEXT OFF CACHE BOOL "Disable RichText")
 add_subdirectory(external/wxWidgets)
 include_directories(external/wxWidgets/include)
 
