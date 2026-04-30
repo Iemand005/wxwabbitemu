@@ -31,11 +31,31 @@ set(wxUSE_HTML OFF CACHE BOOL "Disable HTML")
 set(wxUSE_WEBVIEW OFF CACHE BOOL "Disable WebView")
 set(wxUSE_MEDIACTRL OFF CACHE BOOL "Disable MediaCtrl")
 set(wxUSE_RICHTEXT OFF CACHE BOOL "Disable RichText")
+set(wxUSE_LIBJPEG OFF CACHE BOOL "Disable JPEG support")
+set(wxUSE_LIBTIFF OFF CACHE BOOL "Disable TIFF support")
+set(wxUSE_LIBPNG  OFF CACHE BOOL "Disable PNG support")
+set(wxUSE_EXPAT   OFF CACHE BOOL "Disable XML parsing (Expat)")
+set(wxUSE_ZLIB    OFF CACHE BOOL "Disable Zlib compression")
+set(wxUSE_LIBJPEG OFF CACHE BOOL "" FORCE)
+set(wxUSE_LIBTIFF OFF CACHE BOOL "" FORCE)
+set(wxUSE_LIBPNG  OFF CACHE BOOL "" FORCE)
+set(wxUSE_EXPAT   OFF CACHE BOOL "" FORCE)
+set(wxUSE_ZLIB    OFF CACHE BOOL "" FORCE)
+set(wxUSE_WEBVIEW OFF CACHE BOOL "" FORCE)
+set(wxUSE_NANOSVG OFF CACHE BOOL "" FORCE)
+set(wxUSE_LIBWEBP OFF CACHE BOOL "" FORCE)
+set(wxUSE_REGEX   OFF CACHE BOOL "" FORCE)
 add_subdirectory(external/wxWidgets)
 include_directories(external/wxWidgets/include)
 
 add_subdirectory(external/spasm-ng)
 
+# Only build static lib for EFSW
+set(BUILD_SHARED_LIBS OFF CACHE BOOL "Disable shared library" FORCE)
+set(BUILD_STATIC_LIBS ON CACHE BOOL "Enable static library" FORCE)
+set(BUILD_TEST_APP OFF CACHE BOOL "Disable test application" FORCE)
+set(EFSW_INSTALL OFF CACHE BOOL "Disable install targets" FORCE)
+set(VERBOSE OFF CACHE BOOL "Disable verbose mode" FORCE)
 add_subdirectory(external/efsw)
 
 
@@ -115,18 +135,23 @@ add_executable(wxWabbitemu
 )
 
 target_include_directories(wxWabbitemu PUBLIC
-                           "${PROJECT_BINARY_DIR}"
-                           "${PROJECT_SOURCE_DIR}"
-                           "${PROJECT_SOURCE_DIR}/core"
-                           "${PROJECT_SOURCE_DIR}/debugger"
-                           "${PROJECT_SOURCE_DIR}/gui"
-                           "${PROJECT_SOURCE_DIR}/hardware"
-                           "${PROJECT_SOURCE_DIR}/interface"
-                           "${PROJECT_SOURCE_DIR}/utilities"
-                           )
+	"${PROJECT_BINARY_DIR}"
+	"${PROJECT_SOURCE_DIR}"
+	"${PROJECT_SOURCE_DIR}/core"
+	"${PROJECT_SOURCE_DIR}/debugger"
+	"${PROJECT_SOURCE_DIR}/gui"
+	"${PROJECT_SOURCE_DIR}/hardware"
+	"${PROJECT_SOURCE_DIR}/interface"
+	"${PROJECT_SOURCE_DIR}/utilities"
+)
 
 # target_link_libraries(wxWabbitemu ${wxWidgets_LIBRARIES})
-target_link_libraries(wxWabbitemu PRIVATE wx::core wx::base)
+target_link_libraries(wxWabbitemu PRIVATE
+	wx::core
+	wx::base
+	libspasm
+	efsw
+)
 
 add_definitions(-DHIGH_SHADE_GIF -DVERBOSE -D_LINUX -DWXVER)
 
