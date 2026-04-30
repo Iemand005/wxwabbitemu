@@ -19,9 +19,12 @@ set( wxWidgets_CONFIG_OPTIONS ${wxWidgets_CONFIG_OPTIONS} --static=no )
 
 set(wxBUILD_SHARED OFF CACHE BOOL "" FORCE)
 
-set(wxBUILD_SAMPLES OFF CACHE BOOL "Disable samples")
-set(wxBUILD_TESTS OFF CACHE BOOL "Disable tests")
-set(wxBUILD_DEMOS OFF CACHE BOOL "Disable demos")
+set(wxBUILD_SHARED OFF CACHE BOOL "Build static libs for smaller distribution")
+set(wxBUILD_TESTS OFF CACHE STRING "No tests")
+set(wxBUILD_SAMPLES OFF CACHE STRING "No samples")
+set(wxBUILD_DEMOS OFF CACHE BOOL "No demos")
+set(wxBUILD_MONOLITHIC OFF CACHE BOOL "Keep libraries separate to link only what is needed")
+set(wxBUILD_PRECOMP ON CACHE BOOL "Keep this ON to speed up the build")
 
 set(wxUSE_AUI OFF CACHE BOOL "Disable AUI")
 set(wxUSE_HTML OFF CACHE BOOL "Disable HTML")
